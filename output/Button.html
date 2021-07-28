@@ -1,0 +1,79 @@
+<html><head>
+<base href="../../bm/web/themes/custom/bm/dist/">
+<link href="css/main.css" rel="stylesheet">
+<style>body {
+    padding: 20px;
+}
+
+pre,
+.rendered {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    width: 600px;
+    padding: 20px;
+}
+
+pre {
+    font-size: 0.9rem;
+}</style>
+</head><body>
+<h1 id="button">Button</h1>
+<p>Represents a button. </p>
+<h2 id="primary">Primary</h2>
+<p>Use the <code>primary</code> modifier to create a primary button.</p>
+
+                    <h4>TWIG</h4>
+                    <pre><code class="language-twig">{% include &quot;c-button.html.twig&quot; with {
+    modifier: &#039;primary&#039;,
+    url: &#039;/&#039;,
+    text: &#039;alle ansehen&#039;,
+} %}</code></pre>
+                
+
+                    <h4>HTML</h4>
+                    <pre><code>&lt;a href=&quot;/&quot; class=&quot;c-button c-button--primary&quot; data-hide-on-print&gt;
+    &lt;span class=&quot;c-button__title&quot;&gt;alle ansehen&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+                
+
+                    <h4>RENDERED</h4>
+                    <div class="rendered">
+                    <a href="/" class="c-button c-button--primary" data-hide-on-print>
+    <span class="c-button__title">alle ansehen</span>
+</a>
+                    </div>
+                <h2 id="secondary">Secondary</h2>
+<p>Use the <code>secondary</code> modifier to create a secondary button.</p>
+
+                    <h4>TWIG</h4>
+                    <pre><code class="language-twig">&lt;script&gt;
+    console.log(&#039;workz&#039;);
+&lt;/script&gt;
+{% include &quot;c-button.html.twig&quot; with {
+    modifier: &#039;secondary&#039;,
+    url: &#039;/&#039;,
+    text: &#039;alle ansehen&#039;,
+} %}</code></pre>
+                
+
+                    <h4>HTML</h4>
+                    <pre><code>&lt;script&gt;
+    console.log(&#039;workz&#039;);
+&lt;/script&gt;
+&lt;a href=&quot;/&quot; class=&quot;c-button c-button--secondary&quot; data-hide-on-print&gt;
+    &lt;span class=&quot;c-button__title&quot;&gt;alle ansehen&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+                
+
+                    <h4>RENDERED</h4>
+                    <div class="rendered">
+                    <script>
+    console.log('workz');
+</script>
+<a href="/" class="c-button c-button--secondary" data-hide-on-print>
+    <span class="c-button__title">alle ansehen</span>
+</a>
+                    </div>
+                
+<script src="js/main.js"
+</body></html>

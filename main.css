@@ -1,0 +1,18 @@
+body {
+    padding: 20px;
+}
+
+pre {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    width: 600px;
+    padding: 20px;
+}
+
+.rendered {
+    border: 1px solid #ccc;
+}
+
+pre {
+    font-size: 0.9rem;
+}
