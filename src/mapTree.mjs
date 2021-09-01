@@ -6,7 +6,7 @@ const mapTree = (data, mapFunction, path = []) => {
         throw new Error(`mapTree: The first parameter passed must be an array, is ${JSON.stringify(data)} instead.`);
     }
     return data.map((item, index) => ({
-        ...mapFunction(item, path),
+        ...mapFunction(item, [...path, index]),
         ...(item.children ? {
             children: mapTree(item.children, mapFunction, [...path, index]),
         } : {}),

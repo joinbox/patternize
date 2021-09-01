@@ -53,11 +53,11 @@ test('passes correct path to map function', (t) => {
     t.deepEqual(paths, [
         // Starts from outermost; paths are «stacked» for every item (includes whole hierarchy
         // for every child)
-        [],
         [0],
-        [0],
+        [0, 0],
         [0, 1],
-        [],
+        [0, 1, 0],
+        [1],
     ]);
 
 });

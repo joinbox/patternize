@@ -5,7 +5,7 @@ test('extracts yaml and md', (t) => {
     const data = `
 ---
 yaml
----
+...
 md
 `;
     const { md, yaml } = extractContentTypes(data);
@@ -19,7 +19,7 @@ test('works with missing yaml', (t) => {
     const data = `
 --
 yaml
----
+...
 md
 `;
     const { md, yaml } = extractContentTypes(data);

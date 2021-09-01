@@ -5,6 +5,8 @@ import validatePatternYAML from './validatePatternYAML.mjs';
 import generateMenuStructure from './generateMenuStructure.mjs';
 import extractTitle from './extractTitle.mjs';
 import clearMenu from './clearMenu.mjs';
+import normalizeName from './normalizeName.mjs';
+import getFamilyTree from './getFamilyTree.mjs';
 
 /**
  * Reads *main* pattern YAML file, gathers all necessary information and returns a structure that
@@ -35,6 +37,7 @@ export default (yamlFilePath) => {
     // sourcePath property.
     const menuWithTitles = mapTree(structuredMenu, (item) => {
         const titleFromYAML = extractTitle(join(dirname(yamlFilePath), item.data));
+        console.log('tfy', titleFromYAML, join(dirname(yamlFilePath), item.data));
         return {
             ...(item.children ? { children: item.children } : {}),
             // Use titleFromYAML if file and title exist; else use original name
@@ -50,16 +53,36 @@ export default (yamlFilePath) => {
         path,
     }));
 
+    // Add destination path (use ancestors' titles to create it)
+    const menuWithDestinations = mapTree(menuWithPaths, (item) => {
+        const segments = getFamilyTree(menuWithPaths, item.path);
+        const destination = segments
+            .map(({ title }) => title)
+            // Remove previous file ending
+            .map((title, index, arr) => (index === arr.length - 1 ?
+                title.replace(/\.[a-z]{2,4}/, '') : title))
+            .map(normalizeName)
+            .join('/');
+        return {
+            ...item,
+            // Only add destination if there is a source; if not, menu entry will not be
+            // represented by a page
+            ...(item.sourcePath ? { destinationPath: `${destination}.html` } : {}),
+        };
+    });
+
     // Create one entry per file; contains sourcePath, destinationPath, title and menu
     // (hierarchical structure for the given entry, where only children relevant for the entry
     // are present; all other children removed)
     const menuEntries = [];
-    mapTree(menuWithPaths, (item) => {
+    mapTree(menuWithDestinations, (item) => {
         menuEntries.push({
             ...item,
-            menu: clearMenu(menuWithPaths, item.path),
+            menu: clearMenu(menuWithDestinations, item.path),
         });
     });
+
+    console.dir(menuEntries, { depth: null });
 
     return menuEntries;
 

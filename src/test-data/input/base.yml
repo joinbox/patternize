@@ -1,0 +1,15 @@
+---
+title: Test Title
+paths:
+  scripts:
+    - js/main.js
+  styles:
+    - css/main.css
+structure:
+  - ./welcome.md
+  - Basics
+  - - Entry
+  - Atoms
+  - - Buttons
+    - - ./button/button.md
+...

@@ -7,7 +7,7 @@ import readFile from './readFile.mjs';
 const basePath = dirname(fileURLToPath(new URL(import.meta.url)));
 
 test('reads file', (t) => {
-    const filePath = join(basePath, './test-data/input/testFile.yml');
+    const filePath = join(basePath, './test-data/input/base.yml');
     const content = readFile(filePath);
     t.is(content, readFileSync(filePath, 'utf8'));
 });

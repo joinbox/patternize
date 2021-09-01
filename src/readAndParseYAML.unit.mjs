@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import readAndParseYAML from './readAndParseYAML.mjs';
 
 const basePath = dirname(fileURLToPath(new URL(import.meta.url)));
-const testFilePath = join(basePath, 'test-data/input/testFile.yml');
+const testFilePath = join(basePath, 'test-data/input/base.yml');
 
 test('reads YAML', (t) => {
     const result = readAndParseYAML(testFilePath);
