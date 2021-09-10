@@ -1,0 +1,27 @@
+{% for link in links %}
+    {# Top level entry that is not clickable #}
+    {% if not link.destinationPath %}
+        <p class="menu-label">
+            {{ link.title }}
+        </p>
+        {% if link.children %}
+            <ul class="menu-list">
+                {% include "navigation-entry.twig" with {'links': link.children} only %}
+            </ul>
+        {% endif %}
+    {# Entry that is clickable #}
+    {% else %}
+        <li>
+            <a href="/{{ link.destinationPath }}" {% if link.active %}class="is-active"{% endif %} >
+                {{ link.title }}
+            </a>
+            {% if link.children %}
+                <ul class="menu-list">
+                    {% include "navigation-entry.twig" with {'links': link.children} only %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endif %}
+
+
+{% endfor %}

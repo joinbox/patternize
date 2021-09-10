@@ -1,0 +1,10 @@
+{% set classes = ['c-button'] %}
+{% if secondary %}
+    {% set classes = classes|merge(['c-button-secondary']) %}
+{% else %}
+    {% set classes = classes|merge(['c-button-primary']) %}
+{% endif %}
+
+<button class="{{classes|join(' ')}}">
+    {{ text|default('Send') }}
+</button>

@@ -1,6 +1,6 @@
 /**
  * Takes a nested array and modifies it to generate a menu-like structure of objects with
- * name (string) and children (array).
+ * data (string) and children (array).
  * @param {array} menuData      Nested array of strings
  */
 const convert = menuData => (

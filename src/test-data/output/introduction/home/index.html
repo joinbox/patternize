@@ -1,0 +1,124 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home · </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/languages/twig.min.js"></script>
+    <style>
+        /* For code (tabs), we use a <ul> in .content, which gets assigned a margin-left by bulma.
+        Overwrite it or border below tabs will not go to the left edge */
+        [data-code] ul {
+            margin-left: 0;
+        }
+
+        /* Bulma adds padding around <pre>, highlight.js does so around <code> – one is
+        not needed */
+        .content pre,
+        pre {
+            padding: 0;
+        }
+    </style>
+    
+            <link rel="stylesheet" href="/main.css">
+    </head>
+
+<body>
+    <div class="container is-fullhd mx-4">
+        <div class="columns">
+            <nav class="column is-2 pt-6 mr-5 has-background-white-ter" style="min-height: 100vh">
+                <p>Pattern Library</p>
+                <h3 class="title is-2">RUAG</h3>
+                <!-- Path must be relative to the CWD – fix that -->
+                <aside class="menu">
+        
+            <p class="menu-label">
+            Introduction
+        </p>
+                    <ul class="menu-list">
+                    
+            <li>
+            <a href="/introduction/home" class="is-active" >
+                Home
+            </a>
+                    </li>
+    
+
+            </ul>
+            
+    
+
+    
+            <p class="menu-label">
+            Atoms
+        </p>
+                    <ul class="menu-list">
+                    
+            <li>
+            <a href="/atoms/button-overview"  >
+                Button Overview
+            </a>
+                    </li>
+    
+
+    
+            <li>
+            <a href="/atoms/home"  >
+                Home
+            </a>
+                    </li>
+    
+
+            </ul>
+            
+    
+
+</aside>            </nav>
+            <div class="column">
+                <div class="content mt-6">
+                    <h1 id="pattern-overview">Pattern Overview</h1>
+<p>This is an overview</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Use the most primitive JS to keep things simple (no files that need to be copied,
+        no polyfills, no compilers) */
+
+        /**
+        * Make tabs work
+        */
+        [...document.querySelectorAll('[data-code]')].forEach((tabContainer) => {
+            const tabs = [...tabContainer.querySelectorAll('[data-tab]')];
+            const contentContainers = [...tabContainer.querySelectorAll('[data-content]')];
+            tabs.forEach((tab) => {
+                tab.addEventListener('click', (ev) => {
+                    ev.preventDefault();
+                    tabs.forEach(tab => tab.classList.remove('is-active'));
+                    tab.classList.add('is-active');
+                    const tabIndex = tabs.indexOf(ev.currentTarget);
+                    contentContainers.forEach((container, index) => {
+                        if (index === tabIndex) container.removeAttribute('hidden');
+                        else container.setAttribute('hidden', '');
+                    });
+                });
+            })
+        });
+
+        /**
+        * Add code highlighting
+        */
+        hljs.highlightAll();
+
+    </script>
+            <script src="/main.js"></script>
+    
+</body>
+</html>

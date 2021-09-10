@@ -1,0 +1,6 @@
+{
+    "extends": "@joinbox/joinbox",
+    "parserOptions": {
+        "ecmaVersion": 2020
+    }
+}

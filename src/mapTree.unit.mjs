@@ -59,5 +59,23 @@ test('passes correct path to map function', (t) => {
         [0, 1, 0],
         [1],
     ]);
+});
 
+test('passes original data as third paramter', (t) => {
+    const data = [
+        {
+            value: 1,
+            children: [
+                { value: 2 },
+            ],
+        }, {
+            value: 5,
+        },
+    ];
+    const originalData = [];
+    mapTree(data, (item, path, array) => {
+        originalData.push(array);
+    });
+    t.is(originalData.length, 3);
+    t.is(originalData.every(item => item === data), true);
 });

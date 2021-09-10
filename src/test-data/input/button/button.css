@@ -1,0 +1,22 @@
+.c-button {
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    border: none;
+    transition: transform 0.3s cubic-bezier(0.3, 0, 0.4, 1);
+    font-size: 1rem;
+}
+
+.c-button:hover {
+    transform: scale(0.95) translateY(2px);
+}
+
+.c-button-primary {
+    background-color:  darksalmon;
+    color: white;
+}
+
+.c-button-secondary {
+    border: 2px solid darksalmon;
+    color: darksalmon;
+    background-color: transparent;
+}

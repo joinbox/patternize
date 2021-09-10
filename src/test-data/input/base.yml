@@ -1,15 +1,14 @@
 ---
-title: Test Title
-paths:
-  scripts:
-    - js/main.js
-  styles:
-    - css/main.css
+scripts:
+  - assets/main.js
+styles:
+  - assets/main.css
+project: (Replace)
 structure:
-  - ./welcome.md
-  - Basics
-  - - Entry
+  - Introduction
+  - - ./welcome.md
   - Atoms
-  - - Buttons
+  - - ./button/button.md
     - - ./button/button.md
+    - ./welcome.md
 ...

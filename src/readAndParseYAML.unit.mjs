@@ -10,5 +10,5 @@ test('reads YAML', (t) => {
     const result = readAndParseYAML(testFilePath);
     t.is(typeof result, 'object');
     // Check nested structures
-    t.is(result.structure.length, 5);
+    t.is(result.structure.length, 4);
 });
