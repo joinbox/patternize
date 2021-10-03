@@ -56,7 +56,7 @@ three dots (`...`). All characters below the YAML part are considered to be Mark
       `structure` that resolves to a MD file will be the documentation's home page.
     - `project`(String, mandatory): The project's name, will be used within every documentation
       page's `<title>` tag.
-    - `scripts` and `styles`: See above.
+    - `scripts`, `styles`, `twigFunctions`, `twigFilteres` and `twigNamespaces`: See above.
 
 ### Command Line
 Use `patternizer -h` to see the command line tool flags available.
