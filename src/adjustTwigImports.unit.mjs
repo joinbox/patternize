@@ -3,17 +3,33 @@ import adjustTwigImports from './adjustTwigImports.mjs';
 
 test('adjusts import paths', (t) => {
     // Double quotes
-    const twig1 = '<div>test</div>{% include "dir/test.twig" %}';
-    t.is(adjustTwigImports(twig1, '/base'), '<div>test</div>{% include "/base/dir/test.twig" %}');
+    const twig1 = '<div>test</div>{% include "dir/test.twig" %}<hr/>';
+    t.is(adjustTwigImports(twig1, '/base'), '<div>test</div>{% include "/base/dir/test.twig" %}<hr/>');
     // Single quotes
-    const twig2 = '<div>test</div>{% include  \'dir/test.twig\' ) %}';
+    const twig2 = '<div>test</div>{% include \'dir/test.twig\' %}';
     t.is(
         adjustTwigImports(twig2, '/base'),
-        '<div>test</div>{% include  \'/base/dir/test.twig\' ) %}',
+        '<div>test</div>{% include \'/base/dir/test.twig\' %}',
+    );
+    // Too many spaces
+    const twig3 = '{%   include   \'dir /test.twig\'   %}';
+    t.is(
+        adjustTwigImports(twig3, '/base'),
+        '{%   include   \'/base/dir /test.twig\'   %}',
     );
 });
 
 test('fails if brace and % are missing', (t) => {
     const twig = '<div>{{ include "dir/test.twig" }}';
     t.is(adjustTwigImports(twig, '/User'), twig);
+});
+
+test('works with multiple imports and lines', (t) => {
+    const twig = `
+        <div>{% include "dir/test1.twig" with {"test": true} only %}
+        <div>{% include 'dir/test2.twig' %}
+    `;
+    const result = adjustTwigImports(twig, '/User');
+    t.is(result.includes('{% include "/User/dir/test1.twig" with'), true);
+    t.is(result.includes('{% include \'/User/dir/test2.twig\' %}'), true);
 });

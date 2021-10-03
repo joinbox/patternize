@@ -6,18 +6,20 @@ import Twig from 'twig';
 const basePath = dirname(fileURLToPath(new URL(import.meta.url)));
 
 /**
- * Renders a documentation page
- * @param {object} argument.data            Processed and enriched entry from base YAML
+ * Creates a page that contains a redirect (meta tag) to the first menu entry. Will be stored as
+ * index.html.
+ * @param {object} argument.destination     Path that the user should be redirected to
  * @param {string} argument.templatePath    Path to the template that should be rendered
  * @returns {Promise}
  */
-export default ({ data, templatePath }) => {
+export default ({ destination, templatePath }) => {
     // We do not use renderFile (which is async) to reduce complexity
     const fullTemplatePath = join(basePath, templatePath);
     const { twig } = Twig;
     const template = twig({
-        allowInlineIncludes: true,
         data: readFileSync(fullTemplatePath, 'utf8'),
     });
-    return template.render(data);
+    return template.render({
+        redirectPath: destination,
+    });
 };

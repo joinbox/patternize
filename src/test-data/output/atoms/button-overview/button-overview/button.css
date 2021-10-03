@@ -4,10 +4,17 @@
     border: none;
     transition: transform 0.3s cubic-bezier(0.3, 0, 0.4, 1);
     font-size: 1rem;
+    line-height: 1.3rem;
+    border: 2px solid darksalmon;
 }
 
 .c-button:hover {
     transform: scale(0.95) translateY(2px);
+}
+
+.c-button svg {
+    height: 1.6rem;
+    line-height: 1;
 }
 
 .c-button-primary {
@@ -16,7 +23,6 @@
 }
 
 .c-button-secondary {
-    border: 2px solid darksalmon;
     color: darksalmon;
     background-color: transparent;
 }

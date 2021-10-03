@@ -137,7 +137,14 @@ export default (yamlFilePath) => {
                 // Use baseFile as root file
                 yaml: mergeProperties(
                     [baseWithPaths, ...ancestors.map(({ yaml }) => yaml)],
-                    ['styles', 'scripts'],
+                    [
+                        'styles',
+                        'scripts',
+                        'project',
+                        'twigFunctions',
+                        'twigFilters',
+                        'twigNamespaces',
+                    ],
                 ),
             };
         },
@@ -163,8 +170,6 @@ export default (yamlFilePath) => {
             menu: clearMenu(original, item.path, propertiesToPreserve),
         });
     });
-
-    console.dir(menuEntries, { depth: null });
 
     return menuEntries;
 

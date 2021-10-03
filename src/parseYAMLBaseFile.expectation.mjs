@@ -1,311 +1,140 @@
 export default [
   {
+    "title": "Introduction",
+    "yaml": {
+      "styles": [
+        [
+          "assets/main.css",
+          "main.css"
+        ]
+      ],
+      "scripts": [
+        [
+          "assets/main.js",
+          "main.js"
+        ]
+      ],
+      "project": "Test Project",
+      "twigFilters": {
+        "t": "(text) => `${text} (translated)`"
+      }
+    },
+    "menu": [
+      {
+        "title": "Introduction",
+        "children": [
+          {
+            "destinationPath": "introduction/home",
+            "title": "Home"
+          }
+        ],
+        "active": true
+      },
+      {
+        "title": "Atoms",
+        "children": [
+          {
+            "destinationPath": "atoms/button-overview",
+            "title": "Button Overview"
+          },
+          {
+            "destinationPath": "atoms/home",
+            "title": "Home"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "yaml": {
       "title": "Home",
       "styles": [
         [
-          "css/main.css",
+          "assets/main.css",
           "main.css"
         ]
       ],
       "scripts": [
         [
-          "js/main.js",
+          "assets/main.js",
           "main.js"
         ]
-      ]
+      ],
+      "project": "Test Project",
+      "twigFilters": {
+        "t": "(text) => `${text} (translated)`"
+      }
     },
-    "md": "\n# Pattern Overview\n\nThis is an overview",
+    "md": "\n# Pattern Overview\n\nThis is an overview. Go to [the Button](/atoms/button-overview).",
     "sourcePath": "./welcome.md",
     "title": "Home",
-    "path": [
-      0
-    ],
-    "destinationPath": "home",
+    "destinationPath": "introduction/home",
     "menu": [
       {
-        "destinationPath": "home",
-        "title": "Home",
-        "active": true
-      },
-      {
-        "title": "Basics"
-      },
-      {
-        "title": "Atoms"
-      }
-    ]
-  },
-  {
-    "children": [
-      {
-        "title": "Entry",
-        "path": [
-          1,
-          0
-        ],
-        "yaml": {
-          "styles": [
-            [
-              "css/main.css",
-              "main.css"
-            ]
-          ],
-          "scripts": [
-            [
-              "js/main.js",
-              "main.js"
-            ]
-          ]
-        }
-      }
-    ],
-    "title": "Basics",
-    "path": [
-      1
-    ],
-    "yaml": {
-      "styles": [
-        [
-          "css/main.css",
-          "main.css"
-        ]
-      ],
-      "scripts": [
-        [
-          "js/main.js",
-          "main.js"
-        ]
-      ]
-    },
-    "menu": [
-      {
-        "destinationPath": "home",
-        "title": "Home"
-      },
-      {
-        "title": "Basics",
+        "title": "Introduction",
         "children": [
           {
-            "title": "Entry"
-          }
-        ],
-        "active": true
-      },
-      {
-        "title": "Atoms"
-      }
-    ]
-  },
-  {
-    "title": "Entry",
-    "path": [
-      1,
-      0
-    ],
-    "yaml": {
-      "styles": [
-        [
-          "css/main.css",
-          "main.css"
-        ]
-      ],
-      "scripts": [
-        [
-          "js/main.js",
-          "main.js"
-        ]
-      ]
-    },
-    "menu": [
-      {
-        "destinationPath": "home",
-        "title": "Home"
-      },
-      {
-        "title": "Basics",
-        "children": [
-          {
-            "title": "Entry",
+            "destinationPath": "introduction/home",
+            "title": "Home",
             "active": true
           }
-        ],
-        "active": true
+        ]
       },
       {
-        "title": "Atoms"
+        "title": "Atoms",
+        "children": [
+          {
+            "destinationPath": "atoms/button-overview",
+            "title": "Button Overview"
+          },
+          {
+            "destinationPath": "atoms/home",
+            "title": "Home"
+          }
+        ]
       }
     ]
   },
   {
-    "children": [
-      {
-        "children": [
-          {
-            "yaml": {
-              "title": "Button Overview",
-              "styles": [
-                "button.css"
-              ],
-              "scripts": [
-                "button.js"
-              ]
-            },
-            "md": "\n# Button\n\n## Primary",
-            "sourcePath": "./button/button.md",
-            "title": "Button Overview",
-            "path": [
-              2,
-              0,
-              0
-            ],
-            "destinationPath": "atoms/buttons/button-overview",
-            "styles": [
-              [
-                "button.css",
-                "atoms/buttons/button-overview/button.css"
-              ]
-            ],
-            "scripts": [
-              [
-                "button.js",
-                "atoms/buttons/button-overview/button.js"
-              ]
-            ]
-          }
-        ],
-        "title": "Buttons",
-        "path": [
-          2,
-          0
-        ],
-        "yaml": {
-          "styles": [
-            [
-              "css/main.css",
-              "main.css"
-            ]
-          ],
-          "scripts": [
-            [
-              "js/main.js",
-              "main.js"
-            ]
-          ]
-        }
-      }
-    ],
     "title": "Atoms",
-    "path": [
-      2
-    ],
     "yaml": {
       "styles": [
         [
-          "css/main.css",
+          "assets/main.css",
           "main.css"
         ]
       ],
       "scripts": [
         [
-          "js/main.js",
+          "assets/main.js",
           "main.js"
         ]
-      ]
+      ],
+      "project": "Test Project",
+      "twigFilters": {
+        "t": "(text) => `${text} (translated)`"
+      }
     },
     "menu": [
       {
-        "destinationPath": "home",
-        "title": "Home"
-      },
-      {
-        "title": "Basics"
-      },
-      {
-        "title": "Atoms",
+        "title": "Introduction",
         "children": [
           {
-            "title": "Buttons"
+            "destinationPath": "introduction/home",
+            "title": "Home"
           }
-        ],
-        "active": true
-      }
-    ]
-  },
-  {
-    "children": [
-      {
-        "yaml": {
-          "title": "Button Overview",
-          "styles": [
-            "button.css"
-          ],
-          "scripts": [
-            "button.js"
-          ]
-        },
-        "md": "\n# Button\n\n## Primary",
-        "sourcePath": "./button/button.md",
-        "title": "Button Overview",
-        "path": [
-          2,
-          0,
-          0
-        ],
-        "destinationPath": "atoms/buttons/button-overview",
-        "styles": [
-          [
-            "button.css",
-            "atoms/buttons/button-overview/button.css"
-          ]
-        ],
-        "scripts": [
-          [
-            "button.js",
-            "atoms/buttons/button-overview/button.js"
-          ]
         ]
-      }
-    ],
-    "title": "Buttons",
-    "path": [
-      2,
-      0
-    ],
-    "yaml": {
-      "styles": [
-        [
-          "css/main.css",
-          "main.css"
-        ]
-      ],
-      "scripts": [
-        [
-          "js/main.js",
-          "main.js"
-        ]
-      ]
-    },
-    "menu": [
-      {
-        "destinationPath": "home",
-        "title": "Home"
-      },
-      {
-        "title": "Basics"
       },
       {
         "title": "Atoms",
         "children": [
           {
-            "title": "Buttons",
-            "children": [
-              {
-                "destinationPath": "atoms/buttons/button-overview",
-                "title": "Button Overview"
-              }
-            ],
-            "active": true
+            "destinationPath": "atoms/button-overview",
+            "title": "Button Overview"
+          },
+          {
+            "destinationPath": "atoms/home",
+            "title": "Home"
           }
         ],
         "active": true
@@ -316,57 +145,162 @@ export default [
     "yaml": {
       "title": "Button Overview",
       "styles": [
-        "button.css"
+        [
+          "button.css",
+          "atoms/button-overview/button.css"
+        ]
       ],
       "scripts": [
-        "button.js"
-      ]
+        [
+          "button.js",
+          "atoms/button-overview/button.js"
+        ]
+      ],
+      "project": "Test Project",
+      "twigFilters": {
+        "t": "(text) => `${text} (translated)`"
+      }
     },
-    "md": "\n# Button\n\n## Primary",
+    "md": "\n# Button\n\nVariables that can be passed (as an object):\n- `text` (Text; defaults to `'Send'`)\n- `secondary` (Boolean; defaults to `false`)\n- `arrow` (Boolean; defaults to `false`)\n\nDisplays button's text on click (as an `alert`).\n\n```twig\n{% include 'button.twig' %}\n```\n\n## Hierarchy\n\n### Primary\n\nDefault; only pass text.\n\n```twig\n{% include 'button.twig' with {'text': 'Custom Text' } %}\n```\n\n### Secondary\n\nAdd property `secondary` with value `true`.\n\n```twig\n{% include 'button.twig' with {'text': 'Custom Text', 'secondary': true } %}\n```\n\n## Icons\n\nAdd property `arrow` with value `true`.\n\n```twig\n  {% include \"button.twig\" with {'text': 'Custom Text', 'arrow': true } %}\n  {# TODO: Sometimes we get 'button.twig not found' when using two buttons in a code block #}\n  {% include \"button.twig\" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}\n</div>\n```\n",
     "sourcePath": "./button/button.md",
     "title": "Button Overview",
-    "path": [
-      2,
-      0,
-      0
-    ],
-    "destinationPath": "atoms/buttons/button-overview",
-    "styles": [
-      [
-        "button.css",
-        "atoms/buttons/button-overview/button.css"
-      ]
-    ],
-    "scripts": [
-      [
-        "button.js",
-        "atoms/buttons/button-overview/button.js"
-      ]
-    ],
+    "destinationPath": "atoms/button-overview",
     "menu": [
       {
-        "destinationPath": "home",
-        "title": "Home"
-      },
-      {
-        "title": "Basics"
+        "title": "Introduction",
+        "children": [
+          {
+            "destinationPath": "introduction/home",
+            "title": "Home"
+          }
+        ]
       },
       {
         "title": "Atoms",
         "children": [
           {
-            "title": "Buttons",
+            "destinationPath": "atoms/button-overview",
+            "title": "Button Overview",
             "children": [
               {
-                "destinationPath": "atoms/buttons/button-overview",
-                "title": "Button Overview",
-                "active": true
+                "destinationPath": "atoms/button-overview/button-overview",
+                "title": "Button Overview"
               }
             ],
             "active": true
+          },
+          {
+            "destinationPath": "atoms/home",
+            "title": "Home"
           }
-        ],
-        "active": true
+        ]
+      }
+    ]
+  },
+  {
+    "yaml": {
+      "title": "Button Overview",
+      "styles": [
+        [
+          "button.css",
+          "atoms/button-overview/button-overview/button.css"
+        ]
+      ],
+      "scripts": [
+        [
+          "button.js",
+          "atoms/button-overview/button-overview/button.js"
+        ]
+      ],
+      "project": "Test Project",
+      "twigFilters": {
+        "t": "(text) => `${text} (translated)`"
+      }
+    },
+    "md": "\n# Button\n\nVariables that can be passed (as an object):\n- `text` (Text; defaults to `'Send'`)\n- `secondary` (Boolean; defaults to `false`)\n- `arrow` (Boolean; defaults to `false`)\n\nDisplays button's text on click (as an `alert`).\n\n```twig\n{% include 'button.twig' %}\n```\n\n## Hierarchy\n\n### Primary\n\nDefault; only pass text.\n\n```twig\n{% include 'button.twig' with {'text': 'Custom Text' } %}\n```\n\n### Secondary\n\nAdd property `secondary` with value `true`.\n\n```twig\n{% include 'button.twig' with {'text': 'Custom Text', 'secondary': true } %}\n```\n\n## Icons\n\nAdd property `arrow` with value `true`.\n\n```twig\n  {% include \"button.twig\" with {'text': 'Custom Text', 'arrow': true } %}\n  {# TODO: Sometimes we get 'button.twig not found' when using two buttons in a code block #}\n  {% include \"button.twig\" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}\n</div>\n```\n",
+    "sourcePath": "./button/button.md",
+    "title": "Button Overview",
+    "destinationPath": "atoms/button-overview/button-overview",
+    "menu": [
+      {
+        "title": "Introduction",
+        "children": [
+          {
+            "destinationPath": "introduction/home",
+            "title": "Home"
+          }
+        ]
+      },
+      {
+        "title": "Atoms",
+        "children": [
+          {
+            "destinationPath": "atoms/button-overview",
+            "title": "Button Overview",
+            "children": [
+              {
+                "destinationPath": "atoms/button-overview/button-overview",
+                "title": "Button Overview",
+                "active": true
+              }
+            ]
+          },
+          {
+            "destinationPath": "atoms/home",
+            "title": "Home"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "yaml": {
+      "title": "Home",
+      "styles": [
+        [
+          "assets/main.css",
+          "main.css"
+        ]
+      ],
+      "scripts": [
+        [
+          "assets/main.js",
+          "main.js"
+        ]
+      ],
+      "project": "Test Project",
+      "twigFilters": {
+        "t": "(text) => `${text} (translated)`"
+      }
+    },
+    "md": "\n# Pattern Overview\n\nThis is an overview. Go to [the Button](/atoms/button-overview).",
+    "sourcePath": "./welcome.md",
+    "title": "Home",
+    "destinationPath": "atoms/home",
+    "menu": [
+      {
+        "title": "Introduction",
+        "children": [
+          {
+            "destinationPath": "introduction/home",
+            "title": "Home"
+          }
+        ]
+      },
+      {
+        "title": "Atoms",
+        "children": [
+          {
+            "destinationPath": "atoms/button-overview",
+            "title": "Button Overview"
+         
+ },
+          {
+            "destinationPath": "atoms/home",
+            "title": "Home",
+            "active": true
+          }
+        ]
       }
     ]
   }

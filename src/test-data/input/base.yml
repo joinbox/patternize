@@ -1,9 +1,9 @@
 ---
+project: Test Project
 scripts:
   - assets/main.js
 styles:
   - assets/main.css
-project: (Replace)
 structure:
   - Introduction
   - - ./welcome.md
@@ -11,4 +11,6 @@ structure:
   - - ./button/button.md
     - - ./button/button.md
     - ./welcome.md
+twigFilters:
+  t: (text) => `${text} (translated)`
 ...

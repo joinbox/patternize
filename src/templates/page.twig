@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{title}} · {{project}}</title>
+    <title>{{title}} · {{yaml.project}}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
@@ -33,13 +33,13 @@
     <div class="container is-fullhd mx-4">
         <div class="columns">
             <nav class="column is-2 pt-6 mr-5 has-background-white-ter" style="min-height: 100vh">
-                <p>Pattern Library</p>
-                <h3 class="title is-2">RUAG</h3>
+                <p>Design System</p>
+                <h3 class="title is-4 mb-6">RUAG</h3>
                 <!-- Path must be relative to the CWD – fix that -->
                 {% include "src/templates/navigation.twig" %}
             </nav>
             <div class="column">
-                <div class="content mt-6">
+                <div class="content my-6">
                     {{html}}
                 </div>
             </div>

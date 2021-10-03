@@ -1,14 +1,17 @@
-import validatePaths from './validatePaths.mjs';
+import validateCommonProperties from './validateCommonProperties.mjs';
 
 export default (yaml) => {
 
     // Structure
     if (typeof yaml.structure !== 'object' || yaml.structure === null) {
-        throw new Error(`ValidatePatternYAML: Expected structure property to be an object, is ${yaml.structure} instead.`);
+        throw new Error(`validateBaseYAML: Expected structure property to be an object, is ${yaml.structure} instead.`);
     }
 
-    // Scripts and styles
-    validatePaths(yaml, ['scripts']);
-    validatePaths(yaml, ['styles']);
+    // Project name
+    if (typeof yaml.project !== 'string') {
+        throw new Error(`validateBaseYAML: Expected property project is not a string but ${yaml.project}.`);
+    }
+
+    validateCommonProperties(yaml);
 
 };

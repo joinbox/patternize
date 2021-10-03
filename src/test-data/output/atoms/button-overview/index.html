@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Button Overview · </title>
+    <title>Button Overview · Test Project</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
@@ -31,8 +31,8 @@
     <div class="container is-fullhd mx-4">
         <div class="columns">
             <nav class="column is-2 pt-6 mr-5 has-background-white-ter" style="min-height: 100vh">
-                <p>Pattern Library</p>
-                <h3 class="title is-2">RUAG</h3>
+                <p>Design System</p>
+                <h3 class="title is-4 mb-6">RUAG</h3>
                 <!-- Path must be relative to the CWD – fix that -->
                 <aside class="menu">
         
@@ -89,13 +89,35 @@
 
 </aside>            </nav>
             <div class="column">
-                <div class="content mt-6">
+                <div class="content my-6">
                     <h1 id="button">Button</h1>
-<h2 id="primary">Primary</h2>
 <p>Variables that can be passed (as an object):</p>
 <ul>
 <li><code>text</code> (Text; defaults to <code>&#39;Send&#39;</code>)</li>
+<li><code>secondary</code> (Boolean; defaults to <code>false</code>)</li>
+<li><code>arrow</code> (Boolean; defaults to <code>false</code>)</li>
 </ul>
+<p>Displays button&#39;s text on click (as an <code>alert</code>).</p>
+<div data-code>
+<div class="tabs is-right is-small is-boxed">
+<ul>
+<li data-tab><a>Twig</a></li>
+<li data-tab><a>HTML</a></li>
+<li class="is-active" data-tab><a>Rendered</a></li>
+</ul>
+</div>
+<div data-content hidden><pre><code class="language-twig">{% include &#039;button.twig&#039; %}</code></pre></div>
+<div data-content hidden><pre><code class="html">    
+&lt;button class=&quot;c-button c-button-primary&quot;&gt;
+    Send
+    &lt;/button&gt;</code></pre></div>
+<div data-content>    
+<button class="c-button c-button-primary">
+    Send
+    </button></div>
+</div><h2 id="hierarchy">Hierarchy</h2>
+<h3 id="primary">Primary</h3>
+<p>Default; only pass text.</p>
 <div data-code>
 <div class="tabs is-right is-small is-boxed">
 <ul>
@@ -108,13 +130,13 @@
 <div data-content hidden><pre><code class="html">    
 &lt;button class=&quot;c-button c-button-primary&quot;&gt;
     Custom Text
-&lt;/button&gt;</code></pre></div>
+    &lt;/button&gt;</code></pre></div>
 <div data-content>    
 <button class="c-button c-button-primary">
     Custom Text
-</button></div>
-</div><h2 id="secondary">Secondary</h2>
-<p>Add property <code>secondary</code> with value <code>true</code>:</p>
+    </button></div>
+</div><h3 id="secondary">Secondary</h3>
+<p>Add property <code>secondary</code> with value <code>true</code>.</p>
 <div data-code>
 <div class="tabs is-right is-small is-boxed">
 <ul>
@@ -127,11 +149,41 @@
 <div data-content hidden><pre><code class="html">    
 &lt;button class=&quot;c-button c-button-secondary&quot;&gt;
     Custom Text
-&lt;/button&gt;</code></pre></div>
+    &lt;/button&gt;</code></pre></div>
 <div data-content>    
 <button class="c-button c-button-secondary">
     Custom Text
-</button></div>
+    </button></div>
+</div><h2 id="icons">Icons</h2>
+<p>Add property <code>arrow</code> with value <code>true</code>.</p>
+<div data-code>
+<div class="tabs is-right is-small is-boxed">
+<ul>
+<li data-tab><a>Twig</a></li>
+<li data-tab><a>HTML</a></li>
+<li class="is-active" data-tab><a>Rendered</a></li>
+</ul>
+</div>
+<div data-content hidden><pre><code class="language-twig">  {% include &quot;button.twig&quot; with {&#039;text&#039;: &#039;Custom Text&#039;, &#039;arrow&#039;: true } %}
+  {# TODO: Sometimes we get &#039;button.twig not found&#039; when using two buttons in a code block #}
+  {% include &quot;button.twig&quot; with {&#039;text&#039;: &#039;Custom Text&#039;, &#039;arrow&#039;: true, &#039;secondary&#039;: true } %}
+&lt;/div&gt;</code></pre></div>
+<div data-content hidden><pre><code class="html">      
+&lt;button class=&quot;c-button c-button-primary&quot;&gt;
+    Custom Text
+            ➝    &lt;/button&gt;  
+      
+&lt;button class=&quot;c-button c-button-secondary&quot;&gt;
+    Custom Text
+            ➝    &lt;/button&gt;&lt;/div&gt;</code></pre></div>
+<div data-content>      
+<button class="c-button c-button-primary">
+    Custom Text
+            ➝    </button>  
+      
+<button class="c-button c-button-secondary">
+    Custom Text
+            ➝    </button></div></div>
 </div>
                 </div>
             </div>
