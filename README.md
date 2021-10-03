@@ -80,6 +80,7 @@ structure:
 ```
 
 `welcome.md` file:
+~~~markdown
 ---
 title: Welcome
 ...
@@ -92,7 +93,7 @@ Here's the content:
 
 
 `button.md` file to document a button's behavior: 
-~~~md
+~~~markdown
 ---
 title: Button Overview
 styles:
