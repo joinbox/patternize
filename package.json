@@ -2,8 +2,8 @@
   "name": "pattern-library",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "bin": "executable.mjs",
+  "main": "src/index.mjs",
+  "bin": "src/execute.mjs",
   "scripts": {
     "test": "npx ava --watch --verbose"
   },

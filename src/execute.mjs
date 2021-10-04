@@ -10,4 +10,8 @@ program
 program.parse(process.argv);
 
 const options = program.opts();
-createDocumentation(options.in, options.out, options.force);
+createDocumentation({
+    entryFilePath: options.in,
+    outputDirectoryPath: options.out,
+    forceEmptyOutputDirectory: options.force,
+});

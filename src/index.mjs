@@ -19,14 +19,14 @@ import createIndexRedirect from './createIndexRedirect.mjs';
  * @param {boolean} forceOuputPathRemoval   True if removal of all content of outputPath should be
  *                                          forced
  */
-export default (entryFilePath, outputPath, forceOuputPathRemoval) => {
+export default (entryFilePath, outputDirectoryPath, forceEmptyOutputDirectory) => {
 
-    if (readdirSync(outputPath).length && !forceOuputPathRemoval) {
-        console.error(`index.mjs: outputPath ${outputPath} contains files: ${readdirSync(outputPath).join(', ')}; remove them or use force option to have them removed before you continue`);
+    if (readdirSync(outputDirectoryPath).length && !forceEmptyOutputDirectory) {
+        console.error(`index.mjs: outputPath ${outputDirectoryPath} contains files: ${readdirSync(outputDirectoryPath).join(', ')}; remove them or use force option to have them removed before you continue`);
         return;
     }
 
-    rmdirSync(outputPath, { recursive: true });
+    rmdirSync(outputDirectoryPath, { recursive: true });
 
     // Convert raw YAML data of entry file to data that can be used to create documentation
     // (including menu structure, YAML and MD of linked files etc.)
@@ -49,14 +49,14 @@ export default (entryFilePath, outputPath, forceOuputPathRemoval) => {
         // menu item without a link/page, ignore it.
         if (!entry.destinationPath) continue;
         const rendered = renderPage({ data: entry, templatePath: './templates/page.twig' });
-        mkdirSync(join(outputPath, entry.destinationPath), { recursive: true });
-        writeFileSync(join(outputPath, entry.destinationPath, 'index.html'), rendered);
+        mkdirSync(join(outputDirectoryPath, entry.destinationPath), { recursive: true });
+        writeFileSync(join(outputDirectoryPath, entry.destinationPath, 'index.html'), rendered);
         if (entry.yaml) {
             // Copy scripts and tyles to output directory
             for (const [source, destination] of [...entry.yaml.scripts, ...entry.yaml.styles]) {
                 copyFileSync(
                     join(dirname(entryFilePath), dirname(entry.sourcePath), source),
-                    join(outputPath, destination),
+                    join(outputDirectoryPath, destination),
                 );
             }
         }
@@ -70,7 +70,7 @@ export default (entryFilePath, outputPath, forceOuputPathRemoval) => {
             destination: firstEntryWithDestination.destinationPath,
             templatePath: './templates/home.twig',
         });
-        writeFileSync(join(outputPath, 'index.html'), redirectFile);
+        writeFileSync(join(outputDirectoryPath, 'index.html'), redirectFile);
     }
 
 };

@@ -9,10 +9,21 @@ from Twig based templates. The resulting documentation can be served from any st
 
 ## Installation
 - `npm i -g @joinbox/patternize`
-- `patternize --i path/to/entry/file.yaml --o path/to/output/directory -f`
 
 
 ## Use
+## Options
+- Either use via command line: `patternize --i path/to/entry/file.yaml --o path/to/output/directory -f`
+- Or use in a node script (e.g. via task runner): 
+  ```javascript
+  import patternize from 'patternizer';
+  patternize({
+    entryFile: 'path/to/entry/file.yml',
+    outputDirectory: 'path/to/output/directory',
+    forceEmptyOutputDirectory: true,
+  );
+  ```
+
 
 ### Short Overview
 - Create one Markdown (MD) file per documentation page (e.g. one file per component if every
