@@ -4,14 +4,14 @@
  */
 export default (objects, properties) => (
     objects.reduce((prev, item) => {
-        const clone = { ... item};
+        const clone = { ...item };
         properties.forEach((property) => {
             // New object already contains this property: Don't copy it
-            if (clone.hasOwnProperty(property)) return;
+            if (Object.hasOwnProperty.call(clone, property)) return;
             // Previous object does not have this property: There's nothing to copy
-            if (!prev.hasOwnProperty(property)) return;
+            if (!Object.hasOwnProperty.call(prev, property)) return;
             clone[property] = prev[property];
         });
         return clone;
     })
-)
+);

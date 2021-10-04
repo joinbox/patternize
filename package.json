@@ -1,7 +1,7 @@
 {
-  "name": "pattern-library",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@joinbox/patternize",
+  "version": "0.1.0",
+  "description": "A small Node.js script that generates a static **pattern library** or **design system documentation** from Twig based templates. The resulting documentation can be served from any static file server.",
   "main": "src/index.mjs",
   "bin": "src/execute.mjs",
   "scripts": {

@@ -14,7 +14,7 @@ test('gradually merges from right to left', (t) => {
     }];
     const merged = mergeProperties(data, ['a', 'b', 'c']);
     t.deepEqual(merged, { a: 0, b: 1, c: 3});
-})
+});
 
 test('only merges properties inexistent on original', (t) => {
     const data = [{
@@ -25,7 +25,7 @@ test('only merges properties inexistent on original', (t) => {
         a: undefined,
     }];
     const merged = mergeProperties(data, ['a', 'b']);
-    t.deepEqual(merged, { a: undefined, b: 4});
+    t.deepEqual(merged, { a: undefined, b: 4 });
 });
 
 test('only merges provided properties', (t) => {
@@ -38,7 +38,7 @@ test('only merges provided properties', (t) => {
         a: 2,
     }];
     const merged = mergeProperties(data, ['a', 'b']);
-    t.deepEqual(merged, { a: 2, b: 4});
+    t.deepEqual(merged, { a: 2, b: 4 });
 });
 
 test('does not clone empty properties', (t) => {
@@ -51,5 +51,5 @@ test('does not clone empty properties', (t) => {
         a: 2,
     }];
     const merged = mergeProperties(data, ['a', 'b']);
-    t.deepEqual(merged, { a: 2, b: 4});
+    t.deepEqual(merged, { a: 2, b: 4 });
 });
