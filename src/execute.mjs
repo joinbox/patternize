@@ -3,8 +3,8 @@ import createDocumentation from './index.mjs';
 
 const program = new Command();
 program
-    .option('-i, --in <type>', 'Path to entry file')
-    .option('-o, --out <type>', 'Path to folder that documentation will be stored into')
+    .requiredOption('-i, --in <type>', 'Path to entry file')
+    .requiredOption('-o, --out <type>', 'Path to folder that documentation will be stored into')
     .option('-f, --force', 'Force removal of existing content in output directory');
 
 program.parse(process.argv);
