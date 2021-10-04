@@ -1,4 +1,4 @@
-# Patternizer
+# Patternize
 
 
 ## Introduction
@@ -8,22 +8,25 @@ from Twig based templates. The resulting documentation can be served from any st
 
 
 ## Installation
-- `npm i -g @joinbox/patternize`
+- Requires Node.js ≥ 14
+- `npm i -g @joinbox/patternize` (use `-g` flag only if you want to execute patternize as a 
+  command line tool in global scope)
 
 
 ## Use
-## Options
-- Either use via command line: `patternize --i path/to/entry/file.yaml --o path/to/output/directory -f`
+
+### Execution
+
+- Either use via command line: `patternize -i path/to/entry/file.yml -o path/to/output/directory -f`
 - Or use in a node script (e.g. via task runner): 
   ```javascript
-  import patternize from 'patternizer';
+  import patternize from '@joinbox/patternize';
   patternize({
     entryFilePath: 'path/to/entry/file.yml',
     outputDirectoryPath: 'path/to/output/directory',
     forceEmptyOutputDirectory: true,
-  );
+  });
   ```
-
 
 ### Short Overview
 - Create one Markdown (MD) file per documentation page (e.g. one file per component if every
@@ -70,10 +73,10 @@ three dots (`...`). All characters below the YAML part are considered to be Mark
     - `scripts`, `styles`, `twigFunctions`, `twigFilteres` and `twigNamespaces`: See above.
 
 ### Command Line
-Use `patternizer -h` to see the command line tool flags available.
+Use `patternize -h` to see the command line tool flags available.
 
 ### Example
-`main.yaml` file:
+`main.yml` file:
 
 ```yaml
 ---
