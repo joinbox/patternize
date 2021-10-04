@@ -72,7 +72,7 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
             // Copy scripts and tyles to output directory
             for (const [source, destination] of [...entry.yaml.scripts, ...entry.yaml.styles]) {
                 copyFileSync(
-                    join(dirname(entryFilePath), dirname(entry.sourcePath), source),
+                    join(dirname(entryFilePath), source),
                     join(outputDirectoryPath, destination),
                 );
             }

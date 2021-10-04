@@ -109,7 +109,9 @@ export default (yamlFilePath) => {
     });
 
 
-    // Add destination paths for all files (styles, scripts)
+    // Add destination paths for all files (styles, scripts) and make all source paths relative to
+    // the base YAML file (because styles and scripts will be inherited by child elements where
+    // the destination path will change, while the source path *must* stay the same)
     const filesToCopyProperties = ['scripts', 'styles'];
     const structureWithPathDestinations = mapTree(
         structureWithDestinations,
@@ -119,6 +121,7 @@ export default (yamlFilePath) => {
                 yaml: updateFilesToCopy(
                     item.yaml,
                     filesToCopyProperties,
+                    dirname(item.sourcePath),
                     item.destinationPath,
                 ),
             } : {}),
@@ -126,11 +129,11 @@ export default (yamlFilePath) => {
     );
 
 
-    // Merge parent config into child config if child config does not contain the corresponding
-    // keys
     // Update scripts/styles on base YAML file before we merge it with the documentation's
     // YAML
-    const baseWithPaths = updateFilesToCopy(baseFileYAML, filesToCopyProperties, '');
+    const baseWithPaths = updateFilesToCopy(baseFileYAML, filesToCopyProperties, '', '');
+    // Merge parent config into child config if child config does not contain the corresponding
+    // keys
     const structureWithMergedConfig = mapTree(
         structureWithPathDestinations,
         (item, path, original) => {
