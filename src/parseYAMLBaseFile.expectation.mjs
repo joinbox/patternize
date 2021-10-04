@@ -146,13 +146,13 @@ export default [
       "title": "Button Overview",
       "styles": [
         [
-          "button.css",
+          "button/button.css",
           "atoms/button-overview/button.css"
         ]
       ],
       "scripts": [
         [
-          "button.js",
+          "button/button.js",
           "atoms/button-overview/button.js"
         ]
       ],
@@ -202,13 +202,13 @@ export default [
       "title": "Button Overview",
       "styles": [
         [
-          "button.css",
+          "button/button.css",
           "atoms/button-overview/button-overview/button.css"
         ]
       ],
       "scripts": [
         [
-          "button.js",
+          "button/button.js",
           "atoms/button-overview/button-overview/button.js"
         ]
       ],
