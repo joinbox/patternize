@@ -12,12 +12,19 @@ const basePath = dirname(fileURLToPath(new URL(import.meta.url)));
  * @returns {Promise}
  */
 export default ({ data, templatePath }) => {
-    // We do not use renderFile (which is async) to reduce complexity
+    // Use renderFile (instead of manual rendering) to ensure that all include paths can be
+    // resolved; we'd have to rewrite them (to absolute paths; base is cwd) if we used render
+    // instead.
     const fullTemplatePath = join(basePath, templatePath);
-    const { twig } = Twig;
-    const template = twig({
-        allowInlineIncludes: true,
-        data: readFileSync(fullTemplatePath, 'utf8'),
+    let resolve;
+    let reject;
+    const promise = new Promise((originalResolve, originalReject) => {
+        resolve = originalResolve;
+        reject = originalReject;
     });
-    return template.render(data);
+    Twig.renderFile(fullTemplatePath, data, (err, html) => {
+        if (err) reject(err);
+        else resolve(html);
+    });
+    return promise;
 };

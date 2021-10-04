@@ -8,6 +8,7 @@ from Twig based templates. The resulting documentation can be served from any st
 
 
 ## Installation
+- Requires Node.js ≥ 14
 - `npm i -g @joinbox/patternize` (use `-g` flag only if you want to execute patternize as a 
   command line tool in global scope)
 
@@ -16,7 +17,7 @@ from Twig based templates. The resulting documentation can be served from any st
 
 ### Execution
 
-- Either use via command line: `patternize --i path/to/entry/file.yaml --o path/to/output/directory -f`
+- Either use via command line: `patternize -i path/to/entry/file.yml -o path/to/output/directory -f`
 - Or use in a node script (e.g. via task runner): 
   ```javascript
   import patternize from '@joinbox/patternize';
@@ -24,7 +25,7 @@ from Twig based templates. The resulting documentation can be served from any st
     entryFilePath: 'path/to/entry/file.yml',
     outputDirectoryPath: 'path/to/output/directory',
     forceEmptyOutputDirectory: true,
-  );
+  });
   ```
 
 ### Short Overview
@@ -75,7 +76,7 @@ three dots (`...`). All characters below the YAML part are considered to be Mark
 Use `patternize -h` to see the command line tool flags available.
 
 ### Example
-`main.yaml` file:
+`main.yml` file:
 
 ```yaml
 ---

@@ -47,7 +47,10 @@ export default (yamlFilePath) => {
         // Try to read file; if it does not exist, return current item
         const filePath = join(dirname(yamlFilePath), item.data);
         const content = readFile(filePath);
-        if (!content) return item;
+        if (!content) {
+            console.log(`parseYAMLBaseFile: Entry '${item.data}' in base YAML file's structure property is not a valid file path. Treating it as a crossheading.`);
+            return item;
+        }
 
         // Extract YAML and MD from file; validate YAML
         const { yaml, md } = extractContentTypes(content);

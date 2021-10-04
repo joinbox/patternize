@@ -3,6 +3,7 @@ import {
     writeFileSync,
     mkdirSync,
     rmdirSync,
+    statSync,
     copyFileSync,
     readdirSync,
 } from 'fs';
@@ -19,14 +20,30 @@ import createIndexRedirect from './createIndexRedirect.mjs';
  * @param {boolean} forceOuputPathRemoval   True if removal of all content of outputPath should be
  *                                          forced
  */
-export default (entryFilePath, outputDirectoryPath, forceEmptyOutputDirectory) => {
+export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirectory }) => {
 
     if (readdirSync(outputDirectoryPath).length && !forceEmptyOutputDirectory) {
         console.error(`index.mjs: outputPath ${outputDirectoryPath} contains files: ${readdirSync(outputDirectoryPath).join(', ')}; remove them or use force option to have them removed before you continue`);
         return;
     }
 
+    // Check if relevant files exist and provide human readable error messages
+    try {
+        statSync(entryFilePath);
+    } catch (err) {
+        console.error(`index.mjs: File for entryFilePath ${entryFilePath} does not exist.`);
+        return;
+    }
+
+    try {
+        statSync(outputDirectoryPath);
+    } catch (err) {
+        console.error(`index.mjs: Directory for outputDirectoryPath ${outputDirectoryPath} does not exist.`);
+        return;
+    }
+
     rmdirSync(outputDirectoryPath, { recursive: true });
+    mkdirSync(outputDirectoryPath);
 
     // Convert raw YAML data of entry file to data that can be used to create documentation
     // (including menu structure, YAML and MD of linked files etc.)
@@ -48,7 +65,7 @@ export default (entryFilePath, outputDirectoryPath, forceEmptyOutputDirectory) =
         // If entry has no destination, there's nowhere we could write the result too. This is a
         // menu item without a link/page, ignore it.
         if (!entry.destinationPath) continue;
-        const rendered = renderPage({ data: entry, templatePath: './templates/page.twig' });
+        const rendered = await renderPage({ data: entry, templatePath: './templates/page.twig' });
         mkdirSync(join(outputDirectoryPath, entry.destinationPath), { recursive: true });
         writeFileSync(join(outputDirectoryPath, entry.destinationPath, 'index.html'), rendered);
         if (entry.yaml) {
