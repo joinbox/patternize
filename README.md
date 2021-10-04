@@ -18,8 +18,8 @@ from Twig based templates. The resulting documentation can be served from any st
   ```javascript
   import patternize from 'patternizer';
   patternize({
-    entryFile: 'path/to/entry/file.yml',
-    outputDirectory: 'path/to/output/directory',
+    entryFilePath: 'path/to/entry/file.yml',
+    outputDirectoryPath: 'path/to/output/directory',
     forceEmptyOutputDirectory: true,
   );
   ```
