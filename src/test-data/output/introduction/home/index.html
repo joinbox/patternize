@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home · Test Project</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/tomorrow-night-bright.min.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/languages/twig.min.js"></script>
     <style>
@@ -24,7 +25,8 @@
         }
     </style>
     
-            <link rel="stylesheet" href="/main.css">
+    <!-- CSS files linked through styleSources property -->
+            <link rel="stylesheet" href="../../assets/main.css">
     </head>
 
 <body>
@@ -35,14 +37,14 @@
                 <h3 class="title is-4 mb-6">Test Project</h3>
                 <!-- Path must be relative to the CWD – fix that -->
                 <aside class="menu">
-        
+                        
             <p class="menu-label">
             Introduction
         </p>
                     <ul class="menu-list">
                     
             <li>
-            <a href="/introduction/home" class="is-active" >
+            <a href="" class="is-active" >
                 Home
             </a>
                     </li>
@@ -59,7 +61,7 @@
                     <ul class="menu-list">
                     
             <li>
-            <a href="/atoms/button-overview"  >
+            <a href="../../atoms/button-overview"  >
                 Button Overview
             </a>
                     </li>
@@ -67,7 +69,15 @@
 
     
             <li>
-            <a href="/atoms/home"  >
+            <a href="../../atoms/heading"  >
+                Heading
+            </a>
+                    </li>
+    
+
+    
+            <li>
+            <a href="../../atoms/home"  >
                 Home
             </a>
                     </li>
@@ -77,11 +87,12 @@
             
     
 
-</aside>            </nav>
+                </aside>
+            </nav>
             <div class="column">
                 <div class="content my-6">
                     <h1 id="pattern-overview">Pattern Overview</h1>
-<p>This is an overview. Go to <a href="/atoms/button-overview">the Button</a>.</p>
+<p>This is an overview. Go to <a href="../../atoms/button-overview">the Button</a>.</p>
 
                 </div>
             </div>
@@ -118,7 +129,10 @@
         hljs.highlightAll();
 
     </script>
-            <script src="/main.js"></script>
+    <!-- Scripts linked through scriptSources property -->
+            <script src="../../assets/main.js"></script>
+        <!-- Scripts injected through scripts property -->
+            <script>(() => console.log('entry file scripts executed'))()</script>
     
 </body>
 </html>

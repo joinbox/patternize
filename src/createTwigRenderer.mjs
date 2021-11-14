@@ -38,6 +38,12 @@ export default ({
         namespaces: twigNamespaces,
         data: templateWithAdjustedPaths,
     });
-    const result = parsedTemplate.render(null);
+    // TODO: Inject paths from sources!
+    const fakeData = {
+        attribute: {
+            getClasses: () => 'a b c',
+        },
+    };
+    const result = parsedTemplate.render(fakeData);
     return result;
 };

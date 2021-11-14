@@ -4,13 +4,17 @@ import {
     mkdirSync,
     rmdirSync,
     statSync,
-    copyFileSync,
     readdirSync,
 } from 'fs';
+import fsExtra from 'fs-extra';
 import parseYAMLBaseFile from './parseYAMLBaseFile.mjs';
 import renderPage from './renderPage.mjs';
 import convertMDToHTML from './convertMDToHTML.mjs';
 import createIndexRedirect from './createIndexRedirect.mjs';
+import readAndParseYAML from './readAndParseYAML.mjs';
+import readFile from './readFile.mjs';
+import validateBaseYAML from './validateBaseYAML.mjs';
+import generateMenuStructure from './generateMenuStructure.mjs';
 
 /**
  * Creates documentation from baseFilePath and saves it in outputPath
@@ -45,14 +49,25 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
     rmdirSync(outputDirectoryPath, { recursive: true });
     mkdirSync(outputDirectoryPath);
 
+    const baseFileYAML = readAndParseYAML(entryFilePath);
+    validateBaseYAML(baseFileYAML);
+    // Convert pure YAML array to nexted array with children: { data: 'name', children: [] }
+    const structuredData = generateMenuStructure(baseFileYAML.structure);
+
+
     // Convert raw YAML data of entry file to data that can be used to create documentation
     // (including menu structure, YAML and MD of linked files etc.)
-    const entries = parseYAMLBaseFile(entryFilePath);
+    const structure = parseYAMLBaseFile({
+        structure: structuredData,
+        masterConfig: baseFileYAML,
+        entryYAMLFilePath: entryFilePath,
+        readFile,
+    });
 
 
     // Convert MD in every entry to HTML
-    const entriesWithParsedMD = entries.map((item) => {
-        const html = convertMDToHTML(item, dirname(entryFilePath));
+    const structureWithParsedMD = structure.map((item) => {
+        const html = convertMDToHTML(item);
         return {
             ...item,
             ...(html ? { html } : {}),
@@ -61,19 +76,25 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
 
 
     // Load template, fill with values, write to file system
-    for (const entry of entriesWithParsedMD) {
+    for (const entry of structureWithParsedMD) {
+        // console.log('entry', entry.title);
+        // const { menu, ...nomenu } = entry;
+        // console.log(JSON.stringify(nomenu, null, 2));
         // If entry has no destination, there's nowhere we could write the result too. This is a
         // menu item without a link/page, ignore it.
         if (!entry.destinationPath) continue;
         const rendered = await renderPage({ data: entry, templatePath: './templates/page.twig' });
         mkdirSync(join(outputDirectoryPath, entry.destinationPath), { recursive: true });
         writeFileSync(join(outputDirectoryPath, entry.destinationPath, 'index.html'), rendered);
-        if (entry.yaml) {
-            // Copy scripts and tyles to output directory
-            for (const [source, destination] of [...entry.yaml.scripts, ...entry.yaml.styles]) {
-                copyFileSync(
-                    join(dirname(entryFilePath), source),
-                    join(outputDirectoryPath, destination),
+        // Copy scripts, tyles, images, icons etc. to output directory
+        const { sources } = entry;
+        if (sources) {
+            for (const [, paths] of Object.entries(sources)) {
+                const destinationPath = join(outputDirectoryPath, paths.destination);
+                console.log('Copy %s to %s', paths.source, destinationPath);
+                fsExtra.copySync(
+                    paths.source,
+                    destinationPath,
                 );
             }
         }
@@ -81,7 +102,7 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
 
 
     // Create redirect from home directory to first entry in menu
-    const firstEntryWithDestination = entriesWithParsedMD.find((item) => !!item.destinationPath);
+    const firstEntryWithDestination = structureWithParsedMD.find((item) => !!item.destinationPath);
     if (firstEntryWithDestination) {
         const redirectFile = createIndexRedirect({
             destination: firstEntryWithDestination.destinationPath,

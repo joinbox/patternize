@@ -1,9 +1,12 @@
 ---
 title: Button Overview
-styles:
-  - button.css
-scripts:
+sources:
+  js: button.js
+  css: button.css
+scriptSources:
   - button.js
+styleSources:
+  - button.css
 ...
 
 # Button
@@ -16,7 +19,7 @@ Variables that can be passed (as an object):
 Displays button's text on click (as an `alert`).
 
 ```twig
-{% include 'button.twig' %}
+{% include './button.twig' %}
 ```
 
 ## Hierarchy
@@ -26,7 +29,7 @@ Displays button's text on click (as an `alert`).
 Default; only pass text.
 
 ```twig
-{% include 'button.twig' with {'text': 'Custom Text' } %}
+{% include './button.twig' with {'text': 'Custom Text' } %}
 ```
 
 ### Secondary
@@ -34,7 +37,7 @@ Default; only pass text.
 Add property `secondary` with value `true`.
 
 ```twig
-{% include 'button.twig' with {'text': 'Custom Text', 'secondary': true } %}
+{% include './button.twig' with {'text': 'Custom Text', 'secondary': true } %}
 ```
 
 ## Icons
@@ -42,8 +45,8 @@ Add property `secondary` with value `true`.
 Add property `arrow` with value `true`.
 
 ```twig
-  {% include "button.twig" with {'text': 'Custom Text', 'arrow': true } %}
+  {% include "./button.twig" with {'text': 'Custom Text', 'arrow': true } %}
   {# TODO: Sometimes we get 'button.twig not found' when using two buttons in a code block #}
-  {% include "button.twig" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}
+  {% include "./button.twig" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}
 </div>
 ```

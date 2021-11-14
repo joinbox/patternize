@@ -23,8 +23,20 @@ export default (config) => {
         }
     }
 
+    // Script (for JavaScript that will be executed directly within the documentation page)
+    if (Object.hasOwnProperty.call(config, 'scripts')) {
+        if (!Array.isArray(config.scripts)) {
+            throw new Error(`validateCommonProperties: If you use a scripts property, it must be an array, is ${config.scripts} instead.`);
+        }
+        const invalidScripts = config.scripts?.filter((script) => typeof script !== 'string');
+        if (invalidScripts.length) {
+            throw new Error(`validateCommonProperties: All script items must be strings; you passed the following invalid values ${JSON.stringify(invalidScripts)}.`);
+        }
+    }
+
+
     // Scripts and styles
-    validatePaths(config, ['scripts']);
-    validatePaths(config, ['styles']);
+    validatePaths(config, ['scriptSources']);
+    validatePaths(config, ['styleSources']);
 
 };

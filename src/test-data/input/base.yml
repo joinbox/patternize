@@ -1,16 +1,23 @@
 ---
 project: Test Project
-scripts:
+sources:
+  assets: assets
+scriptSources:
   - assets/main.js
-styles:
+styleSources:
   - assets/main.css
+scripts:
+  - (() => console.log('entry file scripts executed'))()
 structure:
   - Introduction
   - - ./welcome.md
   - Atoms
   - - ./button/button.md
     - - ./button/button.md
+    - heading/heading.md
     - ./welcome.md
 twigFilters:
   t: (text) => `${text} (translated)`
+twigNamespaces:
+  icons: 'assets/icons/arrow.svg'
 ...

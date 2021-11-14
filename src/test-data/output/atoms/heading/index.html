@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home · Test Project</title>
+    <title>Heading · Test Project</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/tomorrow-night-bright.min.css">
 
@@ -26,7 +26,7 @@
     </style>
     
     <!-- CSS files linked through styleSources property -->
-            <link rel="stylesheet" href="../../assets/main.css">
+            <link rel="stylesheet" href="assets/heading.css">
     </head>
 
 <body>
@@ -69,7 +69,7 @@
 
     
             <li>
-            <a href="../heading"  >
+            <a href="" class="is-active" >
                 Heading
             </a>
                     </li>
@@ -77,7 +77,7 @@
 
     
             <li>
-            <a href="" class="is-active" >
+            <a href="../home"  >
                 Home
             </a>
                     </li>
@@ -91,9 +91,19 @@
             </nav>
             <div class="column">
                 <div class="content my-6">
-                    <h1 id="pattern-overview">Pattern Overview</h1>
-<p>This is an overview. Go to <a href="../../atoms/button-overview">the Button</a>.</p>
-
+                    <h1 id="headings">Headings</h1>
+<div data-code>
+<div class="tabs is-right is-small is-boxed">
+<ul>
+<li data-tab><a>Twig</a></li>
+<li data-tab><a>HTML</a></li>
+<li class="is-active" data-tab><a>Rendered</a></li>
+</ul>
+</div>
+<div data-content hidden><pre><code class="language-twig">&lt;h1 class=&quot;h1&quot;&gt;A heading&lt;/h1&gt;</code></pre></div>
+<div data-content hidden><pre><code class="html">&lt;h1 class=&quot;h1&quot;&gt;A heading&lt;/h1&gt;</code></pre></div>
+<div data-content><h1 class="h1">A heading</h1></div>
+</div>
                 </div>
             </div>
         </div>
@@ -132,7 +142,7 @@
     <!-- Scripts linked through scriptSources property -->
             <script src="../../assets/main.js"></script>
         <!-- Scripts injected through scripts property -->
-            <script>(() => console.log('entry file scripts executed'))()</script>
+            <script>console.log('heading');</script>
     
 </body>
 </html>

@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{title}} · {{yaml.project}}</title>
+    <title>{{title}} · {{project}}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/tomorrow-night-bright.min.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/languages/twig.min.js"></script>
     <style>
@@ -24,8 +25,9 @@
         }
     </style>
     {# Add documentation styles at the end to overwrite previous styles of base theme #}
-    {% for style in yaml.styles %}
-        <link rel="stylesheet" href="/{{style[1]}}">
+    <!-- CSS files linked through styleSources property -->
+    {% for source in styleSources %}
+        <link rel="stylesheet" href="{{source}}">
     {% endfor %}
 </head>
 
@@ -34,9 +36,11 @@
         <div class="columns">
             <nav class="column is-2 pt-6 mr-5 has-background-white-ter" style="min-height: 100vh">
                 <p>Design System</p>
-                <h3 class="title is-4 mb-6">{{yaml.project}}</h3>
+                <h3 class="title is-4 mb-6">{{project}}</h3>
                 <!-- Path must be relative to the CWD – fix that -->
-                {% include "./navigation.twig" %}
+                <aside class="menu">
+                    {% include "navigation-entry.twig" with {'links': menu} only %}
+                </aside>
             </nav>
             <div class="column">
                 <div class="content my-6">
@@ -76,8 +80,13 @@
         hljs.highlightAll();
 
     </script>
-    {% for script in yaml.scripts %}
-        <script src="/{{script[1]}}"></script>
+    <!-- Scripts linked through scriptSources property -->
+    {% for source in scriptSources %}
+        <script src="{{source}}"></script>
+    {% endfor %}
+    <!-- Scripts injected through scripts property -->
+    {% for script in scripts %}
+        <script>{{script}}</script>
     {% endfor %}
 
 </body>

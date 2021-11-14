@@ -1,8 +1,9 @@
 {% for link in links %}
-    {# Top level entry that is not clickable #}
-    {% if not link.destinationPath %}
+    {# Top level entry that is not clickable; if it's the current page, destinationPath will be ''
+    therefore we have to also check if link is not active #}
+    {% if not link.destinationPath and not link.active %}
         <p class="menu-label">
-            {{ link.title }}
+            {{link.title}}
         </p>
         {% if link.children %}
             <ul class="menu-list">
@@ -12,8 +13,8 @@
     {# Entry that is clickable #}
     {% else %}
         <li>
-            <a href="/{{ link.destinationPath }}" {% if link.active %}class="is-active"{% endif %} >
-                {{ link.title }}
+            <a href="{{link.destinationPath}}" {% if link.active %}class="is-active"{% endif %} >
+                {{link.title}}
             </a>
             {% if link.children %}
                 <ul class="menu-list">
