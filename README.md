@@ -72,6 +72,8 @@ three dots (`...`). All characters below the YAML part are considered to be Mark
     - `twigNamespaces` (object, optional): Object with a namespace's name as key (String) and
       its path as value (string). See
       [TwigJS' namespace wiki entry](https://github.com/twigjs/twig.js/wiki#user-content-namespaces).
+      Make sure to copy files to output directory via the `sources` property and to use the output
+      path.
     - `twigData` (any parsable JavaScript code, optional): Data that can be accessed from within
       all your `twig` code blocks on the given MD page. Needed to e.g. mock twig functions
       (which can not be defined from within twig code). If you use e.g.

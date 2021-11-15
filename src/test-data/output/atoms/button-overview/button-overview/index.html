@@ -136,13 +136,13 @@
 </div>
 <div data-content hidden><pre><code class="language-twig">{% include &#039;./button.twig&#039; %}</code></pre></div>
 <div data-content hidden><pre><code class="html">    
-&lt;button class=&quot;c-button c-button-primary&quot; more=&quot;a b c&quot;&gt;
+&lt;button class=&quot;c-button c-button-primary&quot; more=&quot;&quot;&gt;
     Send
-    &lt;/button&gt;</code></pre></div>
+        &lt;/button&gt;</code></pre></div>
 <div data-content>    
-<button class="c-button c-button-primary" more="a b c">
+<button class="c-button c-button-primary" more="">
     Send
-    </button></div>
+        </button></div>
 </div><h2 class="title is-2">Hierarchy</h2><h3 class="title is-3">Primary</h3><p class="paragraph">Default; only pass text.</p><div data-code>
 <div class="tabs is-right is-small is-boxed">
 <ul>
@@ -153,13 +153,13 @@
 </div>
 <div data-content hidden><pre><code class="language-twig">{% include &#039;./button.twig&#039; with {&#039;text&#039;: &#039;Custom Text&#039; } %}</code></pre></div>
 <div data-content hidden><pre><code class="html">    
-&lt;button class=&quot;c-button c-button-primary&quot; more=&quot;a b c&quot;&gt;
+&lt;button class=&quot;c-button c-button-primary&quot; more=&quot;&quot;&gt;
     Custom Text
-    &lt;/button&gt;</code></pre></div>
+        &lt;/button&gt;</code></pre></div>
 <div data-content>    
-<button class="c-button c-button-primary" more="a b c">
+<button class="c-button c-button-primary" more="">
     Custom Text
-    </button></div>
+        </button></div>
 </div><h3 class="title is-3">Secondary</h3><p class="paragraph">Add property <code>secondary</code> with value <code>true</code>.</p><div data-code>
 <div class="tabs is-right is-small is-boxed">
 <ul>
@@ -170,14 +170,14 @@
 </div>
 <div data-content hidden><pre><code class="language-twig">{% include &#039;./button.twig&#039; with {&#039;text&#039;: &#039;Custom Text&#039;, &#039;secondary&#039;: true } %}</code></pre></div>
 <div data-content hidden><pre><code class="html">    
-&lt;button class=&quot;c-button c-button-secondary&quot; more=&quot;a b c&quot;&gt;
+&lt;button class=&quot;c-button c-button-secondary&quot; more=&quot;&quot;&gt;
     Custom Text
-    &lt;/button&gt;</code></pre></div>
+        &lt;/button&gt;</code></pre></div>
 <div data-content>    
-<button class="c-button c-button-secondary" more="a b c">
+<button class="c-button c-button-secondary" more="">
     Custom Text
-    </button></div>
-</div><h2 class="title is-2">Icons</h2><p class="paragraph">Add property <code>arrow</code> with value <code>true</code>.</p><div data-code>
+        </button></div>
+</div><h2 class="title is-2">Icons</h2><p class="paragraph">Add property <code>arrow</code> with value <code>true</code>:</p><div data-code>
 <div class="tabs is-right is-small is-boxed">
 <ul>
 <li data-tab><a>Twig</a></li>
@@ -186,25 +186,42 @@
 </ul>
 </div>
 <div data-content hidden><pre><code class="language-twig">  {% include &quot;./button.twig&quot; with {&#039;text&#039;: &#039;Custom Text&#039;, &#039;arrow&#039;: true } %}
-  {# TODO: Sometimes we get &#039;button.twig not found&#039; when using two buttons in a code block #}
   {% include &quot;./button.twig&quot; with {&#039;text&#039;: &#039;Custom Text&#039;, &#039;arrow&#039;: true, &#039;secondary&#039;: true } %}
 &lt;/div&gt;</code></pre></div>
 <div data-content hidden><pre><code class="html">      
-&lt;button class=&quot;c-button c-button-primary&quot; more=&quot;a b c&quot;&gt;
+&lt;button class=&quot;c-button c-button-primary&quot; more=&quot;&quot;&gt;
     Custom Text
-            ➝    &lt;/button&gt;  
-      
-&lt;button class=&quot;c-button c-button-secondary&quot; more=&quot;a b c&quot;&gt;
+            ➝        &lt;/button&gt;      
+&lt;button class=&quot;c-button c-button-secondary&quot; more=&quot;&quot;&gt;
     Custom Text
-            ➝    &lt;/button&gt;&lt;/div&gt;</code></pre></div>
+            ➝        &lt;/button&gt;&lt;/div&gt;</code></pre></div>
 <div data-content>      
-<button class="c-button c-button-primary" more="a b c">
+<button class="c-button c-button-primary" more="">
     Custom Text
-            ➝    </button>  
-      
-<button class="c-button c-button-secondary" more="a b c">
+            ➝        </button>      
+<button class="c-button c-button-secondary" more="">
     Custom Text
-            ➝    </button></div></div>
+            ➝        </button></div></div>
+</div><p class="paragraph">Use a custom icon (e.g. SVG):</p><div data-code>
+<div class="tabs is-right is-small is-boxed">
+<ul>
+<li data-tab><a>Twig</a></li>
+<li data-tab><a>HTML</a></li>
+<li class="is-active" data-tab><a>Rendered</a></li>
+</ul>
+</div>
+<div data-content hidden><pre><code class="language-twig">  {% include &quot;./button.twig&quot; with {&#039;text&#039;: data.defaultText, &#039;icon&#039;: paths.phoneIcon } %}
+&lt;/div&gt;</code></pre></div>
+<div data-content hidden><pre><code class="html">      
+&lt;button class=&quot;c-button c-button-primary&quot; more=&quot;&quot;&gt;
+    Text from twigData
+                &lt;img src=&quot;phone.svg&quot; style=&quot;max-height: 1em&quot; /&gt;
+    &lt;/button&gt;&lt;/div&gt;</code></pre></div>
+<div data-content>      
+<button class="c-button c-button-primary" more="">
+    Text from twigData
+                <img src="phone.svg" style="max-height: 1em" />
+    </button></div></div>
 </div>
                 </div>
             </div>

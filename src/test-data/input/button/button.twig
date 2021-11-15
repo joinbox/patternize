@@ -10,4 +10,7 @@
     {% if arrow %}
         {% include "icon.twig" %}
     {% endif %}
+    {% if icon %}
+        <img src="{{icon}}" style="max-height: 1em" />
+    {% endif %}
 </button>

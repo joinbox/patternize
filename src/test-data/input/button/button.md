@@ -3,10 +3,13 @@ title: Button Overview
 sources:
   js: button.js
   css: button.css
+  phoneIcon: ./phone.svg
 scriptSources:
   - button.js
 styleSources:
   - button.css
+twigData: 
+  defaultText: 'Text from twigData'
 ...
 
 # Button
@@ -42,11 +45,17 @@ Add property `secondary` with value `true`.
 
 ## Icons
 
-Add property `arrow` with value `true`.
+Add property `arrow` with value `true`:
 
 ```twig
   {% include "./button.twig" with {'text': 'Custom Text', 'arrow': true } %}
-  {# TODO: Sometimes we get 'button.twig not found' when using two buttons in a code block #}
   {% include "./button.twig" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}
+</div>
+```
+
+Use a custom icon (e.g. SVG):
+
+```twig
+  {% include "./button.twig" with {'text': data.defaultText, 'icon': paths.phoneIcon } %}
 </div>
 ```

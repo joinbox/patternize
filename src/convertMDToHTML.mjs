@@ -15,6 +15,8 @@ export default (item) => {
             twigFilters: item.twigFilters ?? {},
             twigFunctions: item.twigFunctions ?? {},
             twigNamespaces: item.twigNamespaces ?? {},
+            paths: item.paths ?? {},
+            data: item.twigData ?? {},
             // Base of basePath is the YAML file, adjusted for the sourcePath of the current item
             basePath: dirname(item.sourcePath),
         });

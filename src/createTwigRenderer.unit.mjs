@@ -52,3 +52,16 @@ test('works with namespaces', (t) => {
     t.is(result.includes('<button'), true);
     t.is(result.includes('Send'), true);
 });
+
+test('works with data (paths and data)', (t) => {
+    const template = '<img src="{{ paths.image }}" alt="{{ data.altText }}" />';
+    const result = createTwigRenderer({
+        paths: {
+            image: 'path/to/image.png',
+        },
+        data: {
+            altText: 'alt text',
+        },
+    })(template);
+    t.is(result, '<img src="path/to/image.png" alt="alt text" />');
+});
