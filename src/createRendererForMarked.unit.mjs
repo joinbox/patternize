@@ -19,7 +19,9 @@ test('renders twig', (t) => {
 </ul>
 </div>
 <div data-content hidden><pre><code class="language-twig">&lt;button&gt;{{text}}&lt;/button&gt;</code></pre></div>
-<div data-content hidden><pre><code class="html">&lt;button&gt;{{text}}&lt;/button&gt;</code></pre></div>
+<div data-content hidden><pre><code class="html">
+&lt;button&gt;{{text}}&lt;/button&gt;
+</code></pre></div>
 <div data-content><button>{{text}}</button></div>
 </div>`);
 });

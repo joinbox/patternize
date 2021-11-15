@@ -32,7 +32,9 @@ export default (renderTwig) => ({
             code.push('</ul>');
             code.push('</div>');
             code.push(`<div data-content hidden>${renderedRawCode}</div>`);
-            code.push(`<div data-content hidden><pre><code class="html">${escapeHTML(parsedTwig)}</code></pre></div>`);
+            code.push('<div data-content hidden><pre><code class="html">');
+            code.push(escapeHTML(parsedTwig));
+            code.push('</code></pre></div>');
             code.push(`<div data-content>${parsedTwig}</div>`);
         } else {
             // Unknown type of code (no special treatment will be applied); <a> is necessary for

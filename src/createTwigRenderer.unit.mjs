@@ -53,7 +53,7 @@ test('works with namespaces', (t) => {
     t.is(result.includes('Send'), true);
 });
 
-test('works with data (paths and data)', (t) => {
+test('works with parameters (paths and data)', (t) => {
     const template = '<img src="{{ paths.image }}" alt="{{ data.altText }}" />';
     const result = createTwigRenderer({
         paths: {

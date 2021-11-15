@@ -50,12 +50,10 @@ Add property `arrow` with value `true`:
 ```twig
   {% include "./button.twig" with {'text': 'Custom Text', 'arrow': true } %}
   {% include "./button.twig" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}
-</div>
 ```
 
 Use a custom icon (e.g. SVG):
 
 ```twig
   {% include "./button.twig" with {'text': data.defaultText, 'icon': paths.phoneIcon } %}
-</div>
 ```

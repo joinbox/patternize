@@ -5,12 +5,12 @@
     {% set classes = classes|merge(['c-button-primary']) %}
 {% endif %}
 
-<button class="{{classes|join(' ')}}" more="{{attribute.getClasses()}}">
+<button class="{{classes|join(' ')}}">
+    {% if icon %}
+        <img class="icon" src="{{icon}}" />
+    {% endif %}
     {{ text|default('Send') }}
     {% if arrow %}
         {% include "icon.twig" %}
-    {% endif %}
-    {% if icon %}
-        <img src="{{icon}}" style="max-height: 1em" />
     {% endif %}
 </button>

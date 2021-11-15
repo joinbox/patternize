@@ -7,6 +7,9 @@ export default [
     "scriptSources": [
       "assets/main.js"
     ],
+    "paths": {
+      "assets": "assets"
+    },
     "scripts": [
       "(() => console.log('entry file scripts executed'))()"
     ],
@@ -58,6 +61,9 @@ export default [
     "scriptSources": [
       "../../assets/main.js"
     ],
+    "paths": {
+      "assets": "../../assets"
+    },
     "scripts": [
       "(() => console.log('entry file scripts executed'))()"
     ],
@@ -106,6 +112,9 @@ export default [
     "scriptSources": [
       "assets/main.js"
     ],
+    "paths": {
+      "assets": "assets"
+    },
     "scripts": [
       "(() => console.log('entry file scripts executed'))()"
     ],
@@ -156,6 +165,10 @@ export default [
       "css": {
         "source": "/Users/fs/Sites/patternizer/src/test-data/input/button/button.css",
         "destination": "atoms/button-overview/button.css"
+      },
+      "phoneIcon": {
+        "source": "/Users/fs/Sites/patternizer/src/test-data/input/button/phone.svg",
+        "destination": "atoms/button-overview/phone.svg"
       }
     },
     "scriptSources": [
@@ -164,12 +177,16 @@ export default [
     "styleSources": [
       "button.css"
     ],
-    "md": "\n# Button\n\nVariables that can be passed (as an object):\n- `text` (Text; defaults to `'Send'`)\n- `secondary` (Boolean; defaults to `false`)\n- `arrow` (Boolean; defaults to `false`)\n\nDisplays button's text on click (as an `alert`).\n\n```twig\n{% include './button.twig' %}\n```\n\n## Hierarchy\n\n### Primary\n\nDefault; only pass text.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text' } %}\n```\n\n### Secondary\n\nAdd property `secondary` with value `true`.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text', 'secondary': true } %}\n```\n\n## Icons\n\nAdd property `arrow` with value `true`.\n\n```twig\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true } %}\n  {# TODO: Sometimes we get 'button.twig not found' when using two buttons in a code block #}\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}\n</div>\n```\n",
+    "twigData": {
+      "defaultText": "Text from twigData"
+    },
+    "md": "\n# Button\n\nVariables that can be passed (as an object):\n- `text` (Text; defaults to `'Send'`)\n- `secondary` (Boolean; defaults to `false`)\n- `arrow` (Boolean; defaults to `false`)\n\nDisplays button's text on click (as an `alert`).\n\n```twig\n{% include './button.twig' %}\n```\n\n## Hierarchy\n\n### Primary\n\nDefault; only pass text.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text' } %}\n```\n\n### Secondary\n\nAdd property `secondary` with value `true`.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text', 'secondary': true } %}\n```\n\n## Icons\n\nAdd property `arrow` with value `true`:\n\n```twig\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true } %}\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}\n```\n\nUse a custom icon (e.g. SVG):\n\n```twig\n  {% include \"./button.twig\" with {'text': data.defaultText, 'icon': paths.phoneIcon } %}\n```\n",
     "sourcePath": "/Users/fs/Sites/patternizer/src/test-data/input/button/button.md",
     "destinationPath": "atoms/button-overview",
     "paths": {
       "js": "button.js",
-      "css": "button.css"
+      "css": "button.css",
+      "phoneIcon": "phone.svg"
     },
     "scripts": [
       "(() => console.log('entry file scripts executed'))()"
@@ -227,6 +244,10 @@ export default [
       "css": {
         "source": "/Users/fs/Sites/patternizer/src/test-data/input/button/button.css",
         "destination": "atoms/button-overview/button-overview/button.css"
+      },
+      "phoneIcon": {
+        "source": "/Users/fs/Sites/patternizer/src/test-data/input/button/phone.svg",
+        "destination": "atoms/button-overview/button-overview/phone.svg"
       }
     },
     "scriptSources": [
@@ -235,12 +256,16 @@ export default [
     "styleSources": [
       "button.css"
     ],
-    "md": "\n# Button\n\nVariables that can be passed (as an object):\n- `text` (Text; defaults to `'Send'`)\n- `secondary` (Boolean; defaults to `false`)\n- `arrow` (Boolean; defaults to `false`)\n\nDisplays button's text on click (as an `alert`).\n\n```twig\n{% include './button.twig' %}\n```\n\n## Hierarchy\n\n### Primary\n\nDefault; only pass text.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text' } %}\n```\n\n### Secondary\n\nAdd property `secondary` with value `true`.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text', 'secondary': true } %}\n```\n\n## Icons\n\nAdd property `arrow` with value `true`.\n\n```twig\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true } %}\n  {# TODO: Sometimes we get 'button.twig not found' when using two buttons in a code block #}\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}\n</div>\n```\n",
+    "twigData": {
+      "defaultText": "Text from twigData"
+    },
+    "md": "\n# Button\n\nVariables that can be passed (as an object):\n- `text` (Text; defaults to `'Send'`)\n- `secondary` (Boolean; defaults to `false`)\n- `arrow` (Boolean; defaults to `false`)\n\nDisplays button's text on click (as an `alert`).\n\n```twig\n{% include './button.twig' %}\n```\n\n## Hierarchy\n\n### Primary\n\nDefault; only pass text.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text' } %}\n```\n\n### Secondary\n\nAdd property `secondary` with value `true`.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text', 'secondary': true } %}\n```\n\n## Icons\n\nAdd property `arrow` with value `true`:\n\n```twig\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true } %}\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}\n```\n\nUse a custom icon (e.g. SVG):\n\n```twig\n  {% include \"./button.twig\" with {'text': data.defaultText, 'icon': paths.phoneIcon } %}\n```\n",
     "sourcePath": "/Users/fs/Sites/patternizer/src/test-data/input/button/button.md",
     "destinationPath": "atoms/button-overview/button-overview",
     "paths": {
       "js": "button.js",
-      "css": "button.css"
+      "css": "button.css",
+      "phoneIcon": "phone.svg"
     },
     "scripts": [
       "(() => console.log('entry file scripts executed'))()"
@@ -260,8 +285,7 @@ export default [
             "destinationPath": "../../../introduction/home",
             "title": "Home"
           }
-     
-   ]
+        ]
       },
       {
         "title": "Atoms",
@@ -360,6 +384,9 @@ export default [
     "scriptSources": [
       "../../assets/main.js"
     ],
+    "paths": {
+      "assets": "../../assets"
+    },
     "scripts": [
       "(() => console.log('entry file scripts executed'))()"
     ],

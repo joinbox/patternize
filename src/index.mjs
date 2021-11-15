@@ -91,7 +91,7 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
         if (sources) {
             for (const [, paths] of Object.entries(sources)) {
                 const destinationPath = join(outputDirectoryPath, paths.destination);
-                console.log('Copy %s to %s', paths.source, destinationPath);
+                // console.log('Copy %s to %s', paths.source, destinationPath);
                 fsExtra.copySync(
                     paths.source,
                     destinationPath,

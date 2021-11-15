@@ -22,7 +22,7 @@ test('parses yaml base file', (t) => {
         entryYAMLFilePath: yamlFilePath,
         readFile,
     });
-    console.log('expct', JSON.stringify(result, null, 2));
+    // console.log('expct', JSON.stringify(result, null, 2));
     t.deepEqual(result, expectation);
 });
 
