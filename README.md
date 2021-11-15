@@ -141,7 +141,7 @@ sources:
 styleSources:
   - path/to/dist-folder/css/button.css
 scriptSources:
-  - - path/to/dist-folder/js/button.js
+  - path/to/dist-folder/js/button.js
 twigFilters:
   t: (text) => `assumeIAmTranslated(${text})`
 twigData:

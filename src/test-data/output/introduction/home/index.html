@@ -23,6 +23,24 @@
         pre {
             padding: 0;
         }
+
+        .paragraph {
+            margin: 1em 0;
+        }
+        .title {
+            margin: 1em 0;
+        }
+        .list li {
+            margin: 0.5em 0;
+            margin-left: 0.75em;
+        }
+        /* Use before element to control spacing without additional classes */
+        .list li:before {
+            content: '–';
+            position: relative;
+            left: -0.75em;
+        }
+
     </style>
     
     <!-- CSS files linked through styleSources property -->
@@ -90,10 +108,8 @@
                 </aside>
             </nav>
             <div class="column">
-                <div class="content my-6">
-                    <h1 id="pattern-overview">Pattern Overview</h1>
-<p>This is an overview. Go to <a href="../../atoms/button-overview">the Button</a>.</p>
-
+                <div class="my-6">
+                    <h1 class="title is-1">Pattern Overview</h1><p class="paragraph">This is an overview. Go to <a href="../../atoms/button-overview">the Button</a>.</p>
                 </div>
             </div>
         </div>

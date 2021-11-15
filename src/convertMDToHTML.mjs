@@ -1,7 +1,7 @@
 import { dirname } from 'path';
 import parseMarkdown from './parseMarkdown.mjs';
 import createTwigRenderer from './createTwigRenderer.mjs';
-import createCodeRendererForMarked from './createCodeRendererForMarked.mjs';
+import createRendererForMarked from './createRendererForMarked.mjs';
 
 /**
  * Converts a MD property to HTML
@@ -18,7 +18,7 @@ export default (item) => {
             // Base of basePath is the YAML file, adjusted for the sourcePath of the current item
             basePath: dirname(item.sourcePath),
         });
-        const codeRenderer = createCodeRendererForMarked(renderTwig);
+        const codeRenderer = createRendererForMarked(renderTwig);
         htmlContent = parseMarkdown({
             markdown: item.md,
             renderers: [codeRenderer],

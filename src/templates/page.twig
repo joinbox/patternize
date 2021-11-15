@@ -23,6 +23,24 @@
         pre {
             padding: 0;
         }
+
+        .paragraph {
+            margin: 1em 0;
+        }
+        .title {
+            margin: 1em 0;
+        }
+        .list li {
+            margin: 0.5em 0;
+            margin-left: 0.75em;
+        }
+        /* Use before element to control spacing without additional classes */
+        .list li:before {
+            content: '–';
+            position: relative;
+            left: -0.75em;
+        }
+
     </style>
     {# Add documentation styles at the end to overwrite previous styles of base theme #}
     <!-- CSS files linked through styleSources property -->
@@ -43,7 +61,7 @@
                 </aside>
             </nav>
             <div class="column">
-                <div class="content my-6">
+                <div class="my-6">
                     {{html}}
                 </div>
             </div>

@@ -23,6 +23,24 @@
         pre {
             padding: 0;
         }
+
+        .paragraph {
+            margin: 1em 0;
+        }
+        .title {
+            margin: 1em 0;
+        }
+        .list li {
+            margin: 0.5em 0;
+            margin-left: 0.75em;
+        }
+        /* Use before element to control spacing without additional classes */
+        .list li:before {
+            content: '–';
+            position: relative;
+            left: -0.75em;
+        }
+
     </style>
     
     <!-- CSS files linked through styleSources property -->
@@ -100,16 +118,15 @@
                 </aside>
             </nav>
             <div class="column">
-                <div class="content my-6">
-                    <h1 id="button">Button</h1>
-<p>Variables that can be passed (as an object):</p>
-<ul>
-<li><code>text</code> (Text; defaults to <code>&#39;Send&#39;</code>)</li>
+                <div class="my-6">
+                    <h1 class="title is-1">Button</h1><p class="paragraph">Variables that can be passed (as an object):</p>
+            <ul class="list" start="">
+                <li><code>text</code> (Text; defaults to <code>&#39;Send&#39;</code>)</li>
 <li><code>secondary</code> (Boolean; defaults to <code>false</code>)</li>
 <li><code>arrow</code> (Boolean; defaults to <code>false</code>)</li>
-</ul>
-<p>Displays button&#39;s text on click (as an <code>alert</code>).</p>
-<div data-code>
+
+            </ul>
+        <p class="paragraph">Displays button&#39;s text on click (as an <code>alert</code>).</p><div data-code>
 <div class="tabs is-right is-small is-boxed">
 <ul>
 <li data-tab><a>Twig</a></li>
@@ -126,10 +143,7 @@
 <button class="c-button c-button-primary" more="a b c">
     Send
     </button></div>
-</div><h2 id="hierarchy">Hierarchy</h2>
-<h3 id="primary">Primary</h3>
-<p>Default; only pass text.</p>
-<div data-code>
+</div><h2 class="title is-2">Hierarchy</h2><h3 class="title is-3">Primary</h3><p class="paragraph">Default; only pass text.</p><div data-code>
 <div class="tabs is-right is-small is-boxed">
 <ul>
 <li data-tab><a>Twig</a></li>
@@ -146,9 +160,7 @@
 <button class="c-button c-button-primary" more="a b c">
     Custom Text
     </button></div>
-</div><h3 id="secondary">Secondary</h3>
-<p>Add property <code>secondary</code> with value <code>true</code>.</p>
-<div data-code>
+</div><h3 class="title is-3">Secondary</h3><p class="paragraph">Add property <code>secondary</code> with value <code>true</code>.</p><div data-code>
 <div class="tabs is-right is-small is-boxed">
 <ul>
 <li data-tab><a>Twig</a></li>
@@ -165,9 +177,7 @@
 <button class="c-button c-button-secondary" more="a b c">
     Custom Text
     </button></div>
-</div><h2 id="icons">Icons</h2>
-<p>Add property <code>arrow</code> with value <code>true</code>.</p>
-<div data-code>
+</div><h2 class="title is-2">Icons</h2><p class="paragraph">Add property <code>arrow</code> with value <code>true</code>.</p><div data-code>
 <div class="tabs is-right is-small is-boxed">
 <ul>
 <li data-tab><a>Twig</a></li>

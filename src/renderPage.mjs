@@ -18,6 +18,7 @@ export default ({ data, templatePath }) => {
     const fullTemplatePath = join(basePath, templatePath);
     let resolve;
     let reject;
+    // renderFile uses callbacks; convert them to a promise.
     const promise = new Promise((originalResolve, originalReject) => {
         resolve = originalResolve;
         reject = originalReject;
