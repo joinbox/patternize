@@ -17,7 +17,7 @@ from Twig based templates. The resulting documentation can be served from any st
 
 ### Execution
 
-- Either use via command line: `patternize -i path/to/entry/file.yml -o path/to/output/directory -f`
+- WIP: Either use via command line: `patternize -i path/to/entry/file.yml -o path/to/output/directory -f`
 - Or use in a node script (e.g. via task runner): 
   ```javascript
   import patternize from '@joinbox/patternize';

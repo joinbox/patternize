@@ -128,7 +128,7 @@ export default ({
         .map(adjustSources)
 
 
-        // Add current path to scriptSources, styleSources, twigNamespaces before they are merged
+        // Add current path to scriptSources, styleSources and twigNamespaces before they are merged
         .map(adjustPaths)
 
 
@@ -157,17 +157,10 @@ export default ({
         })
 
 
-        // .map((item) => {
-        //     console.log('itm');
-        //     console.log(item);
-        //     return item;
-        // })
-
-        // Make different paths relative:
+        // Make different paths relative (used for destination that can be placed anywhere and
+        // moved around after it has been generated):
         // - Script and style tags will use src attributes to link code from within a documentation
         //   page; make them relative (to the current page's path)
-        // - twigNamespaces must be relative, as we will only copy the files (sources) once, not
-        //   per documentation page
         // - paths that link to sources (which are only copied once)
         .map((item) => ({
             ...item,
@@ -186,13 +179,6 @@ export default ({
                 paths: mapObject(
                     item.paths,
                     (destination) => relative(item.destinationPath, destination),
-                ),
-            } : {}),
-            // twigNamespaces
-            ...((item.twigNamespaces && item.destinationPath) ? {
-                twigNamespaces: mapObject(
-                    item.twigNamespaces,
-                    (value) => relative(item.destinationPath, value),
                 ),
             } : {}),
 

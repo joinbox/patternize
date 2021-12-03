@@ -18,7 +18,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "assets/icons/arrow.svg"
+      "icons": "/Users/fs/Sites/patternizer/src/test-data/input/assets/icons"
     },
     "menu": [
       {
@@ -72,7 +72,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "../../assets/icons/arrow.svg"
+      "icons": "/Users/fs/Sites/patternizer/src/test-data/input/assets/icons"
     },
     "menu": [
       {
@@ -123,7 +123,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "assets/icons/arrow.svg"
+      "icons": "/Users/fs/Sites/patternizer/src/test-data/input/assets/icons"
     },
     "menu": [
       {
@@ -196,7 +196,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "../../assets/icons/arrow.svg"
+      "icons": "/Users/fs/Sites/patternizer/src/test-data/input/assets/icons"
     },
     "menu": [
       {
@@ -275,7 +275,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "../../../assets/icons/arrow.svg"
+      "icons": "/Users/fs/Sites/patternizer/src/test-data/input/assets/icons"
     },
     "menu": [
       {
@@ -341,7 +341,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "../../assets/icons/arrow.svg"
+      "icons": "/Users/fs/Sites/patternizer/src/test-data/input/assets/icons"
     },
     "menu": [
       {
@@ -395,7 +395,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "../../assets/icons/arrow.svg"
+      "icons": "/Users/fs/Sites/patternizer/src/test-data/input/assets/icons"
     },
     "menu": [
       {

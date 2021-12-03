@@ -19,10 +19,10 @@ export default (item) => ({
             (source) => join(item.destinationPath, source),
         ),
     } : {}),
-    ...((item.twigNamespaces && item.destinationPath) ? {
+    ...((item.twigNamespaces && item.sourcePath) ? {
         twigNamespaces: mapObject(
             item.twigNamespaces,
-            (source) => join(item.destinationPath, source),
+            (source) => join(item.sourcePath, source),
         ),
     } : {}),
 });

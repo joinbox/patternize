@@ -154,6 +154,8 @@ test('inherits certain fields', (t) => {
               name: () => 'twigFunctionValue'
             twigFilters:
               name: () => 'twigFilterValue'
+            twigNamespaces:
+              icons: path/to/icons
             twigData: "{ attribute: 'a' }"
             ...
         `,
@@ -166,6 +168,7 @@ test('inherits certain fields', (t) => {
         'twigData',
         'scripts',
         'paths',
+        'twigNamespaces',
     ];
     for (const field of fieldsToInherit) {
         t.deepEqual(result[3][field], result[2][field]);
@@ -179,7 +182,7 @@ test('inherits certain fields', (t) => {
 
 });
 
-test('inherits styleSources, scriptSources, twigNamespaces and uses relative path', (t) => {
+test('inherits styleSources and scriptSources, uses relative path', (t) => {
     const customFileContents = {
         '/base/file2.md': `
             ---
@@ -188,8 +191,6 @@ test('inherits styleSources, scriptSources, twigNamespaces and uses relative pat
               - main.js
             styleSources:
               - main.css
-            twigNamespaces:
-              name: path/to/folder
             ...
         `,
     };
@@ -202,14 +203,10 @@ test('inherits styleSources, scriptSources, twigNamespaces and uses relative pat
     // styleSources
     t.deepEqual(result[2].styleSources, ['main.css']);
     t.deepEqual(result[3].styleSources, ['../main.css']);
-    // twigNamespaces
-    t.deepEqual(result[2].twigNamespaces, { name: 'path/to/folder' });
-    t.deepEqual(result[3].twigNamespaces, { name: '../path/to/folder' });
 
     // No unnecessary items
     t.is(Object.hasOwnProperty.call(result[0], 'scriptSources'), false);
     t.is(Object.hasOwnProperty.call(result[0], 'styleSources'), false);
-    t.is(Object.hasOwnProperty.call(result[0], 'twigNamespaces'), false);
 });
 
 

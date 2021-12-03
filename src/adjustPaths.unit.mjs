@@ -9,15 +9,17 @@ test('adjusts scriptSources, styleSources, twigNamespaces', (t) => {
             ns: 'twig/icons',
         },
         destinationPath: '/output/',
+        sourcePath: '/input/',
     };
     const result = adjustPaths(item);
     t.deepEqual(result, {
         scriptSources: ['/output/src/script.js', '/output/src/main.mjs'],
         styleSources: ['/output/src/style.css'],
         twigNamespaces: {
-            ns: '/output/twig/icons',
+            ns: '/input/twig/icons',
         },
         destinationPath: item.destinationPath,
+        sourcePath: item.sourcePath,
     });
 });
 

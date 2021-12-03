@@ -19,5 +19,5 @@ structure:
 twigFilters:
   t: (text) => `${text} (translated)`
 twigNamespaces:
-  icons: 'assets/icons/arrow.svg'
+  icons: 'assets/icons'
 ...
