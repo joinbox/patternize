@@ -15,11 +15,16 @@ test('creates expected documentation files', async(t) => {
         forceEmptyOutputDirectory: true,
     });
 
-    const { differences } = dirCompare.compareSync(
+    const result = dirCompare.compareSync(
         outPath,
         join(basePath, 'test-data/expectation'),
         { compareContent: true },
     );
+    const { differences } = result;
+    if (differences !== 0) {
+        console.log('Differences');
+        console.log(result.diffSet);
+    }
     t.is(differences, 0);
 
 });

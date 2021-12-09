@@ -6,9 +6,9 @@ export default (originalObject, properties) => {
     if (!properties) return { ...originalObject };
     const cleanObject = {};
     for (const prop of properties) {
-        if (originalObject.hasOwnProperty(prop)) {
-            cleanObject[prop] = originalObject[prop]
+        if (Object.hasOwnProperty.call(originalObject, prop)) {
+            cleanObject[prop] = originalObject[prop];
         }
     }
     return cleanObject;
-}
+};

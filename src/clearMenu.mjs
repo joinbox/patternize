@@ -41,7 +41,7 @@ const clean = (structure, activePath, properties, parentPath = []) => (
                 ...(isActive(currentPath, activePath) ? { active: true } : {}),
             };
         }
-        // Current entry is not an ancestor: Remove its children
+        // Current entry is not an ancestor or active element: Remove its children
         else {
             const { children, ...clone } = item;
             return clearObject(clone, properties);

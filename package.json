@@ -26,7 +26,8 @@
     "commander": "^8.2.0",
     "js-yaml": "^4.1.0",
     "marked": "^2.1.3",
-    "twig": "^1.15.4"
+    "twig": "^1.15.4",
+    "fs-extra": "^10.0.0"
   },
   "devDependencies": {
     "@joinbox/eslint-config-joinbox": "^1.0.9",

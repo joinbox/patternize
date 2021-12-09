@@ -6,8 +6,11 @@
 {% endif %}
 
 <button class="{{classes|join(' ')}}">
+    {% if icon %}
+        <img class="icon" src="{{icon}}" />
+    {% endif %}
     {{ text|default('Send') }}
     {% if arrow %}
-        {% include "icon.twig" %}
+        {% include "@icons/arrow-icon.twig" %}
     {% endif %}
 </button>
