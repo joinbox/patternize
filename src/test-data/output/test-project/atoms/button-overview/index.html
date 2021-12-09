@@ -1,0 +1,275 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Button Overview · Test Project</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/tomorrow-night-bright.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/languages/twig.min.js"></script>
+    <style>
+        /* For code (tabs), we use a <ul> in .content, which gets assigned a margin-left by bulma.
+        Overwrite it or border below tabs will not go to the left edge */
+        [data-code] ul {
+            margin-left: 0;
+        }
+
+        /* Bulma adds padding around <pre>, highlight.js does so around <code> – one is
+        not needed */
+        .content pre,
+        pre {
+            padding: 0;
+        }
+
+        .paragraph {
+            margin: 1em 0;
+        }
+        .title {
+            margin: 1em 0;
+        }
+        .list li {
+            margin: 0.5em 0;
+            margin-left: 0.75em;
+        }
+        /* Use before element to control spacing without additional classes */
+        .list li:before {
+            content: '–';
+            position: relative;
+            left: -0.75em;
+        }
+
+    </style>
+    
+    <!-- CSS files linked through styleSources property -->
+            <link rel="stylesheet" href="button.css">
+    </head>
+
+<body>
+    <div class="container is-fullhd mx-4">
+        <div class="columns">
+            <nav class="column is-2 pt-6 mr-5 has-background-white-ter" style="min-height: 100vh">
+                <p>Design System</p>
+                <h3 class="title is-4 mb-6">Test Project</h3>
+                <!-- Path must be relative to the CWD – fix that -->
+                <aside class="menu">
+                        
+            <p class="menu-label">
+            Introduction
+        </p>
+                    <ul class="menu-list">
+                    
+            <li>
+            <a href="../../introduction/home"  >
+                Home
+            </a>
+                    </li>
+    
+
+            </ul>
+            
+    
+
+    
+            <p class="menu-label">
+            Atoms
+        </p>
+                    <ul class="menu-list">
+                    
+            <li>
+            <a href="" class="is-active" >
+                Button Overview
+            </a>
+                            <ul class="menu-list">
+                        
+            <li>
+            <a href="button-overview"  >
+                Button Overview
+            </a>
+                    </li>
+    
+
+                </ul>
+                    </li>
+    
+
+    
+            <li>
+            <a href="../heading"  >
+                Heading
+            </a>
+                    </li>
+    
+
+    
+            <li>
+            <a href="../home"  >
+                Home
+            </a>
+                    </li>
+    
+
+            </ul>
+            
+    
+
+                </aside>
+            </nav>
+            <div class="column">
+                <div class="my-6">
+                    <h1 class="title is-1">Button</h1><p class="paragraph">Variables that can be passed (as an object):</p>
+            <ul class="list" start="">
+                <li><code>text</code> (Text; defaults to <code>&#39;Send&#39;</code>)</li>
+<li><code>secondary</code> (Boolean; defaults to <code>false</code>)</li>
+<li><code>arrow</code> (Boolean; defaults to <code>false</code>)</li>
+
+            </ul>
+        <p class="paragraph">Displays button&#39;s text on click (as an <code>alert</code>).</p><div data-code>
+<div class="tabs is-right is-small is-boxed">
+<ul>
+<li data-tab><a>Twig</a></li>
+<li data-tab><a>HTML</a></li>
+<li class="is-active" data-tab><a>Rendered</a></li>
+</ul>
+</div>
+<div data-content hidden><pre><code class="language-twig">{% include &#039;./button.twig&#039; %}</code></pre></div>
+<div data-content hidden><pre><code class="html">
+    
+&lt;button class=&quot;c-button c-button-primary&quot;&gt;
+        Send
+    &lt;/button&gt;
+</code></pre></div>
+<div data-content>    
+<button class="c-button c-button-primary">
+        Send
+    </button></div>
+</div><h2 class="title is-2">Hierarchy</h2><h3 class="title is-3">Primary</h3><p class="paragraph">Default; only pass text.</p><div data-code>
+<div class="tabs is-right is-small is-boxed">
+<ul>
+<li data-tab><a>Twig</a></li>
+<li data-tab><a>HTML</a></li>
+<li class="is-active" data-tab><a>Rendered</a></li>
+</ul>
+</div>
+<div data-content hidden><pre><code class="language-twig">{% include &#039;./button.twig&#039; with {&#039;text&#039;: &#039;Custom Text&#039; } %}</code></pre></div>
+<div data-content hidden><pre><code class="html">
+    
+&lt;button class=&quot;c-button c-button-primary&quot;&gt;
+        Custom Text
+    &lt;/button&gt;
+</code></pre></div>
+<div data-content>    
+<button class="c-button c-button-primary">
+        Custom Text
+    </button></div>
+</div><h3 class="title is-3">Secondary</h3><p class="paragraph">Add property <code>secondary</code> with value <code>true</code>.</p><div data-code>
+<div class="tabs is-right is-small is-boxed">
+<ul>
+<li data-tab><a>Twig</a></li>
+<li data-tab><a>HTML</a></li>
+<li class="is-active" data-tab><a>Rendered</a></li>
+</ul>
+</div>
+<div data-content hidden><pre><code class="language-twig">{% include &#039;./button.twig&#039; with {&#039;text&#039;: &#039;Custom Text&#039;, &#039;secondary&#039;: true } %}</code></pre></div>
+<div data-content hidden><pre><code class="html">
+    
+&lt;button class=&quot;c-button c-button-secondary&quot;&gt;
+        Custom Text
+    &lt;/button&gt;
+</code></pre></div>
+<div data-content>    
+<button class="c-button c-button-secondary">
+        Custom Text
+    </button></div>
+</div><h2 class="title is-2">Icons</h2><p class="paragraph">Add property <code>arrow</code> with value <code>true</code>:</p><div data-code>
+<div class="tabs is-right is-small is-boxed">
+<ul>
+<li data-tab><a>Twig</a></li>
+<li data-tab><a>HTML</a></li>
+<li class="is-active" data-tab><a>Rendered</a></li>
+</ul>
+</div>
+<div data-content hidden><pre><code class="language-twig">  {% include &quot;./button.twig&quot; with {&#039;text&#039;: &#039;Custom Text&#039;, &#039;arrow&#039;: true } %}
+  {% include &quot;./button.twig&quot; with {&#039;text&#039;: &#039;Custom Text&#039;, &#039;arrow&#039;: true, &#039;secondary&#039;: true } %}</code></pre></div>
+<div data-content hidden><pre><code class="html">
+      
+&lt;button class=&quot;c-button c-button-primary&quot;&gt;
+        Custom Text
+            ➝    &lt;/button&gt;      
+&lt;button class=&quot;c-button c-button-secondary&quot;&gt;
+        Custom Text
+            ➝    &lt;/button&gt;
+</code></pre></div>
+<div data-content>      
+<button class="c-button c-button-primary">
+        Custom Text
+            ➝    </button>      
+<button class="c-button c-button-secondary">
+        Custom Text
+            ➝    </button></div>
+</div><p class="paragraph">Use a custom icon (e.g. SVG):</p><div data-code>
+<div class="tabs is-right is-small is-boxed">
+<ul>
+<li data-tab><a>Twig</a></li>
+<li data-tab><a>HTML</a></li>
+<li class="is-active" data-tab><a>Rendered</a></li>
+</ul>
+</div>
+<div data-content hidden><pre><code class="language-twig">  {% include &quot;./button.twig&quot; with {&#039;text&#039;: data.defaultText, &#039;icon&#039;: paths.phoneIcon } %}</code></pre></div>
+<div data-content hidden><pre><code class="html">
+      
+&lt;button class=&quot;c-button c-button-primary&quot;&gt;
+            &lt;img class=&quot;icon&quot; src=&quot;phone.svg&quot; /&gt;
+        Text from twigData
+    &lt;/button&gt;
+</code></pre></div>
+<div data-content>      
+<button class="c-button c-button-primary">
+            <img class="icon" src="phone.svg" />
+        Text from twigData
+    </button></div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Use the most primitive JS to keep things simple (no files that need to be copied,
+        no polyfills, no compilers) */
+
+        /**
+        * Make tabs work
+        */
+        [...document.querySelectorAll('[data-code]')].forEach((tabContainer) => {
+            const tabs = [...tabContainer.querySelectorAll('[data-tab]')];
+            const contentContainers = [...tabContainer.querySelectorAll('[data-content]')];
+            tabs.forEach((tab) => {
+                tab.addEventListener('click', (ev) => {
+                    ev.preventDefault();
+                    tabs.forEach(tab => tab.classList.remove('is-active'));
+                    tab.classList.add('is-active');
+                    const tabIndex = tabs.indexOf(ev.currentTarget);
+                    contentContainers.forEach((container, index) => {
+                        if (index === tabIndex) container.removeAttribute('hidden');
+                        else container.setAttribute('hidden', '');
+                    });
+                });
+            })
+        });
+
+        /**
+        * Add code highlighting
+        */
+        hljs.highlightAll();
+
+    </script>
+    <!-- Scripts linked through scriptSources property -->
+            <script src="button.js"></script>
+        <!-- Scripts injected through scripts property -->
+            <script>(() => console.log('entry file scripts executed'))()</script>
+    
+</body>
+</html>

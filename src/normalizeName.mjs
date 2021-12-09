@@ -3,10 +3,10 @@
  * @param {string} value
  * @returns {string}
  */
-export default value => value
+export default (value) => value
     .toLowerCase()
     // Remove pre-existing dashes
-    .replace(/\-+/, '')
+    .replace(/-+/, '')
     // Replace spaces with dashes
     .replace(/\s+/g, '-')
     // Remove everthing invalid

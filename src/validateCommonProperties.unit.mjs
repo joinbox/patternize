@@ -14,8 +14,18 @@ test('validates twig properties', (t) => {
     t.notThrows(() => validateCommonProperties({ twigFunctions: { t: 'value => value' } }));
 });
 
-test('validates paths', (t) => {
-    t.throws(() => validateCommonProperties({ scripts: null }));
+test('validates scripts', (t) => {
+    t.throws(() => validateCommonProperties({ scripts: null }), {
+        message: /scripts property, it must be an array, is null/,
+    });
+    t.throws(() => validateCommonProperties({ scripts: [0] }), {
+        message: /items must be strings.*values \[0\]/,
+    });
     t.notThrows(() => validateCommonProperties({ scripts: ['a'] }));
+});
+
+test('validates paths', (t) => {
+    t.throws(() => validateCommonProperties({ scriptSources: null }));
+    t.notThrows(() => validateCommonProperties({ scriptSources: ['a'] }));
 });
 

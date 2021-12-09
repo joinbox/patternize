@@ -18,6 +18,6 @@ test('validates scripts and styles', (t) => {
         structure: {},
         project: '',
     };
-    t.throws(() => validateBaseYAML({ ...validBase, scripts: 'notAnArray' }));
-    t.throws(() => validateBaseYAML({ ...validBase, styles: ['string', 5] }));
+    t.throws(() => validateBaseYAML({ ...validBase, scriptSources: 'notAnArray' }));
+    t.throws(() => validateBaseYAML({ ...validBase, styleSources: ['string', 5] }));
 });
