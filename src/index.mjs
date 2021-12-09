@@ -1,6 +1,8 @@
-import { join, dirname } from 'path';
+import { join } from 'path';
+import { version } from 'process';
 import {
     writeFileSync,
+    existsSync,
     mkdirSync,
     rmdirSync,
     statSync,
@@ -16,6 +18,7 @@ import readFile from './readFile.mjs';
 import validateBaseYAML from './validateBaseYAML.mjs';
 import generateMenuStructure from './generateMenuStructure.mjs';
 
+
 /**
  * Creates documentation from baseFilePath and saves it in outputPath
  * @param {string} entryFilePath            Absolute path to entry YAM file
@@ -26,24 +29,27 @@ import generateMenuStructure from './generateMenuStructure.mjs';
  */
 export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirectory }) => {
 
+    const major = parseInt(version.substring(1).match(/^\d+/), 10);
+    const requiredMajor = 14;
+    if (major < requiredMajor) {
+        throw new Error(`Use Node v${requiredMajor} or higher`);
+    }
+
+    // Output directory does not exist
+    if (!existsSync(outputDirectoryPath)) {
+        throw new Error(`Directory for outputPath ${outputDirectoryPath} does not exist; create it first.`);
+    }
+
+    // Output directory contains files and forceEmpty option is not set.
     if (readdirSync(outputDirectoryPath).length && !forceEmptyOutputDirectory) {
-        console.error(`index.mjs: outputPath ${outputDirectoryPath} contains files: ${readdirSync(outputDirectoryPath).join(', ')}; remove them or use force option to have them removed before you continue`);
-        return;
+        throw new Error(`index.mjs: outputPath ${outputDirectoryPath} contains files: ${readdirSync(outputDirectoryPath).join(', ')}; remove them or use force option to have them removed before you continue`);
     }
 
     // Check if relevant files exist and provide human readable error messages
     try {
         statSync(entryFilePath);
     } catch (err) {
-        console.error(`index.mjs: File for entryFilePath ${entryFilePath} does not exist.`);
-        return;
-    }
-
-    try {
-        statSync(outputDirectoryPath);
-    } catch (err) {
-        console.error(`index.mjs: Directory for outputDirectoryPath ${outputDirectoryPath} does not exist.`);
-        return;
+        throw new Error(`File for entryFilePath ${entryFilePath} does not exist.`);
     }
 
     rmdirSync(outputDirectoryPath, { recursive: true });
@@ -77,9 +83,6 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
 
     // Load template, fill with values, write to file system
     for (const entry of structureWithParsedMD) {
-        // console.log('entry', entry.title);
-        // const { menu, ...nomenu } = entry;
-        // console.log(JSON.stringify(nomenu, null, 2));
         // If entry has no destination, there's nowhere we could write the result too. This is a
         // menu item without a link/page, ignore it.
         if (!entry.destinationPath) continue;
@@ -92,6 +95,13 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
             for (const [, paths] of Object.entries(sources)) {
                 const destinationPath = join(outputDirectoryPath, paths.destination);
                 // console.log('Copy %s to %s', paths.source, destinationPath);
+                if (existsSync(destinationPath)) {
+                    console.warn(
+                        'Overwriting path %s (from source %s), make sure you don\'t use child components or chapters with the same name as source paths.',
+                        destinationPath,
+                        paths.source,
+                    );
+                }
                 fsExtra.copySync(
                     paths.source,
                     destinationPath,
@@ -101,8 +111,11 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
     }
 
 
-    // Create redirect from home directory to first entry in menu
-    const firstEntryWithDestination = structureWithParsedMD.find((item) => !!item.destinationPath);
+    // Create redirect from home directory to first entry in menu that is *not* the masterConfig
+    // (which has a structure)
+    const firstEntryWithDestination = structureWithParsedMD.find(
+        (item) => !!item.destinationPath && !item.structure,
+    );
     if (firstEntryWithDestination) {
         const redirectFile = createIndexRedirect({
             destination: firstEntryWithDestination.destinationPath,

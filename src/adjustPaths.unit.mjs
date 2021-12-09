@@ -9,7 +9,7 @@ test('adjusts scriptSources, styleSources, twigNamespaces', (t) => {
             ns: 'twig/icons',
         },
         destinationPath: '/output/',
-        sourcePath: '/input/',
+        sourcePath: '/input/file.md',
     };
     const result = adjustPaths(item);
     t.deepEqual(result, {

@@ -12,7 +12,7 @@ export default (item) => {
 
     const itemWithUpdatedSources = {
         ...item,
-        ...((item.sources && item.destinationPath) ? {
+        ...((item.sources && item.destinationPath && item.sourcePath) ? {
             sources: mapObject(
                 item.sources,
                 (value) => ({
@@ -20,16 +20,14 @@ export default (item) => {
                     destination: join(item.destinationPath, value),
                 }),
             ),
+            paths: mapObject(
+                item.sources,
+                // Use same function as above
+                (value) => join(item.destinationPath, value),
+            ),
         } : {}),
     };
 
-    const itemWithPaths = {
-        ...itemWithUpdatedSources,
-        ...(itemWithUpdatedSources.sources ? {
-            paths: mapObject(itemWithUpdatedSources.sources, ({ destination }) => destination),
-        } : {}),
-    };
-
-    return itemWithPaths;
+    return itemWithUpdatedSources;
 
 };

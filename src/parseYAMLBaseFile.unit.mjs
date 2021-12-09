@@ -7,7 +7,7 @@ import parseYAMLBaseFile from './parseYAMLBaseFile.mjs';
  * @param {object} customFileContents   Object with file path as key and contents as value; will
  *                                      be merged with default values
  */
-const setupData = ({ customFileContents, masterConfig = {} } = {}) => {
+const setupData = ({ customFileContents, masterConfig = { project: 'Project Name' } } = {}) => {
     const structure = [
         { data: 'First' },
         { data: 'file1.md' },
@@ -80,21 +80,22 @@ test('fails on invalid content', (t) => {
 
 test('creates sourcePath and destinationPath properties', (t) => {
     const { result } = setupData();
-    t.is(result.length, 4);
+    t.is(result.length, 5);
 
     // Entry that does not resolve to a file does not get paths
-    t.is(Object.hasOwnProperty.call(result[0], 'sourcePath'), false);
-    t.is(Object.hasOwnProperty.call(result[0], 'destinationPath'), false);
+    t.is(Object.hasOwnProperty.call(result[1], 'sourcePath'), false);
+    t.is(Object.hasOwnProperty.call(result[1], 'destinationPath'), false);
 
     // Destination path is created from title and path in menu structure
-    t.is(result[3].sourcePath, '/base/file2-1.md');
-    t.is(result[3].destinationPath, 'file-2-title/file-21-title');
+    t.is(result[4].sourcePath, '/base/file2-1.md');
+    t.is(result[4].destinationPath, 'project-name/file-2-title/file-21-title');
 });
 
 
 test('reads files; keeps invalid paths as titles and uses titles from valid files', (t) => {
     const { result } = setupData();
     t.deepEqual(result.map(({ title }) => title), [
+        'Project Name',
         'First',
         'File 1 Title',
         'File 2 Title',
@@ -105,14 +106,14 @@ test('reads files; keeps invalid paths as titles and uses titles from valid file
 
 test('creates clean menu structure with active entry', (t) => {
     const { result } = setupData();
-    t.deepEqual(result[0].menu, [{
+    t.deepEqual(result[1].menu, [{
         active: true,
         title: 'First',
     }, {
-        destinationPath: 'file-1-title',
+        destinationPath: 'project-name/file-1-title',
         title: 'File 1 Title',
     }, {
-        destinationPath: 'file-2-title',
+        destinationPath: 'project-name/file-2-title',
         title: 'File 2 Title',
     }]);
 });
@@ -125,20 +126,42 @@ test('updates sources with source and destination properties', (t) => {
             ---
             title: Custom File 2
             sources:
-              name: path/to/source
+              name: path/to/source-2
             ...
         `,
     };
     const { result } = setupData({ customFileContents });
 
-    t.deepEqual(result[2].sources, {
+    t.deepEqual(result[3].sources, {
         name: {
-            source: '/base/path/to/source',
-            destination: 'custom-file-2/path/to/source',
+            source: '/base/path/to/source-2',
+            destination: 'project-name/custom-file-2/path/to/source-2',
         },
     });
     // Sources are only copied once, therefore not inherited by descendants
-    t.is(result[3].sources, undefined);
+    t.is(result[4].sources, undefined);
+});
+
+
+test('adds anceestors\' path to source\'s destination', (t) => {
+    const customFileContents = {
+        '/base/file2-1.md': `
+            ---
+            title: Custom File 2-1
+            sources:
+              name: path/to/source-2-1
+            ...
+        `,
+    };
+    const { result } = setupData({ customFileContents });
+
+    // Adds parent's element's path to source's destination
+    t.deepEqual(result[4].sources, {
+        name: {
+            source: '/base/path/to/source-2-1',
+            destination: 'project-name/file-2-title/custom-file-21/path/to/source-2-1',
+        },
+    });
 });
 
 
@@ -171,16 +194,16 @@ test('inherits certain fields', (t) => {
         'twigNamespaces',
     ];
     for (const field of fieldsToInherit) {
-        t.deepEqual(result[3][field], result[2][field]);
+        t.deepEqual(result[4][field], result[3][field]);
     }
 
     // No unnecessary properties if they are not provided
-    t.is(Object.hasOwnProperty.call(result[0], 'project'), false);
-    t.is(Object.hasOwnProperty.call(result[0], 'twigFunctions'), false);
-    t.is(Object.hasOwnProperty.call(result[0], 'twigFilters'), false);
-    t.is(Object.hasOwnProperty.call(result[0], 'scripts'), false);
+    t.is(Object.hasOwnProperty.call(result[1], 'twigFunctions'), false);
+    t.is(Object.hasOwnProperty.call(result[1], 'twigFilters'), false);
+    t.is(Object.hasOwnProperty.call(result[1], 'scripts'), false);
 
 });
+
 
 test('inherits styleSources and scriptSources, uses relative path', (t) => {
     const customFileContents = {
@@ -198,15 +221,15 @@ test('inherits styleSources and scriptSources, uses relative path', (t) => {
     // just a crossheading)
     const { result } = setupData({ customFileContents });
     // scriptSources
-    t.deepEqual(result[2].scriptSources, ['main.js']);
-    t.deepEqual(result[3].scriptSources, ['../main.js']);
+    t.deepEqual(result[3].scriptSources, ['main.js']);
+    t.deepEqual(result[4].scriptSources, ['../main.js']);
     // styleSources
-    t.deepEqual(result[2].styleSources, ['main.css']);
-    t.deepEqual(result[3].styleSources, ['../main.css']);
+    t.deepEqual(result[3].styleSources, ['main.css']);
+    t.deepEqual(result[4].styleSources, ['../main.css']);
 
     // No unnecessary items
-    t.is(Object.hasOwnProperty.call(result[0], 'scriptSources'), false);
-    t.is(Object.hasOwnProperty.call(result[0], 'styleSources'), false);
+    t.is(Object.hasOwnProperty.call(result[1], 'scriptSources'), false);
+    t.is(Object.hasOwnProperty.call(result[1], 'styleSources'), false);
 });
 
 
@@ -221,11 +244,11 @@ test('adds path properties to all descendants of sources', (t) => {
         `,
     };
     const { result } = setupData({ customFileContents });
-    t.deepEqual(result[2].paths, {
+    t.deepEqual(result[3].paths, {
         name: 'path/to/source',
     });
     // Path is inherited by child entries and relative to their path
-    t.deepEqual(result[3].paths, {
+    t.deepEqual(result[4].paths, {
         name: '../path/to/source',
     });
 });
@@ -238,12 +261,35 @@ test('inherits from masterConfig', (t) => {
             filterName: () => 'twigFilterValue',
         },
         sources: {
-            sourceName: 'path/to/source',
+            sourceIdentifier: 'path/to/source',
+        },
+        scriptSources: [
+            'path/to/source/main.js',
+        ],
+    };
+    const { result } = setupData({ masterConfig });
+    // Only test if properties were inherited by first entry; others will be the same
+    t.is(result[1].project, 'My Project');
+    t.is(typeof result[1].twigFilters.filterName, 'function');
+    t.deepEqual(result[1].paths, { sourceIdentifier: 'my-project/path/to/source' });
+    t.deepEqual(result[1].scriptSources, ['my-project/path/to/source/main.js']);
+});
+
+
+test('uses correct paths for masterConfig', (t) => {
+    const masterConfig = {
+        project: 'My Project',
+        sources: {
+            sourceIdentifier: 'path/to/source',
         },
     };
     const { result } = setupData({ masterConfig });
     // Only test if properties were inherited by first entry; others will be the same
-    t.is(result[0].project, 'My Project');
-    t.is(typeof result[0].twigFilters.filterName, 'function');
-    t.deepEqual(result[0].paths, { sourceName: 'path/to/source' });
+    t.deepEqual(result[0].sources, {
+        sourceIdentifier: {
+            source: '/base/path/to/source',
+            destination: 'my-project/path/to/source',
+        },
+    });
+
 });

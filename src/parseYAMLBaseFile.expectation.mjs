@@ -1,24 +1,33 @@
 export default [
   {
-    "title": "Introduction",
-    "styleSources": [
-      "assets/main.css"
-    ],
+    "project": "Test Project",
+    "sources": {
+      "assets": {
+        "source": "/Users/fs/Sites/patternizer/src/test-data/input/assets",
+        "destination": "test-project/assets"
+      }
+    },
     "scriptSources": [
       "assets/main.js"
     ],
-    "paths": {
-      "assets": "assets"
-    },
+    "styleSources": [
+      "assets/main.css"
+    ],
     "scripts": [
       "(() => console.log('entry file scripts executed'))()"
     ],
-    "project": "Test Project",
     "twigFilters": {
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
       "icons": "/Users/fs/Sites/patternizer/src/test-data/input/assets/icons"
+    },
+    "sourcePath": "/Users/fs/Sites/patternizer/src/test-data/input/base.yml",
+    "showInMenu": false,
+    "title": "Test Project",
+    "destinationPath": "test-project",
+    "paths": {
+      "assets": "assets"
     },
     "menu": [
       {
@@ -28,8 +37,7 @@ export default [
             "destinationPath": "introduction/home",
             "title": "Home"
           }
-        ],
-        "active": true
+        ]
       },
       {
         "title": "Atoms",
@@ -51,10 +59,61 @@ export default [
     ]
   },
   {
+    "title": "Introduction",
+    "styleSources": [
+      "test-project/assets/main.css"
+    ],
+    "scriptSources": [
+      "test-project/assets/main.js"
+    ],
+    "paths": {
+      "assets": "test-project/assets"
+    },
+    "scripts": [
+      "(() => console.log('entry file scripts executed'))()"
+    ],
+    "project": "Test Project",
+    "twigFilters": {
+      "t": "(text) => `${text} (translated)`"
+    },
+    "twigNamespaces": {
+      "icons": "/Users/fs/Sites/patternizer/src/test-data/input/assets/icons"
+    },
+    "menu": [
+      {
+        "title": "Introduction",
+        "children": [
+          {
+            "destinationPath": "test-project/introduction/home",
+            "title": "Home"
+          }
+        ],
+        "active": true
+      },
+      {
+        "title": "Atoms",
+        "children": [
+          {
+            "destinationPath": "test-project/atoms/button-overview",
+            "title": "Button Overview"
+          },
+          {
+            "destinationPath": "test-project/atoms/heading",
+            "title": "Heading"
+          },
+          {
+            "destinationPath": "test-project/atoms/home",
+            "title": "Home"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "title": "Home",
     "md": "\n# Pattern Overview\n\nThis is an overview. Go to [the Button](../../atoms/button-overview).",
     "sourcePath": "/Users/fs/Sites/patternizer/src/test-data/input/welcome.md",
-    "destinationPath": "introduction/home",
+    "destinationPath": "test-project/introduction/home",
     "styleSources": [
       "../../assets/main.css"
     ],
@@ -107,13 +166,13 @@ export default [
   {
     "title": "Atoms",
     "styleSources": [
-      "assets/main.css"
+      "test-project/assets/main.css"
     ],
     "scriptSources": [
-      "assets/main.js"
+      "test-project/assets/main.js"
     ],
     "paths": {
-      "assets": "assets"
+      "assets": "test-project/assets"
     },
     "scripts": [
       "(() => console.log('entry file scripts executed'))()"
@@ -130,7 +189,7 @@ export default [
         "title": "Introduction",
         "children": [
           {
-            "destinationPath": "introduction/home",
+            "destinationPath": "test-project/introduction/home",
             "title": "Home"
           }
         ]
@@ -139,15 +198,15 @@ export default [
         "title": "Atoms",
         "children": [
           {
-            "destinationPath": "atoms/button-overview",
+            "destinationPath": "test-project/atoms/button-overview",
             "title": "Button Overview"
           },
           {
-            "destinationPath": "atoms/heading",
+            "destinationPath": "test-project/atoms/heading",
             "title": "Heading"
           },
           {
-            "destinationPath": "atoms/home",
+            "destinationPath": "test-project/atoms/home",
             "title": "Home"
           }
         ],
@@ -160,15 +219,15 @@ export default [
     "sources": {
       "js": {
         "source": "/Users/fs/Sites/patternizer/src/test-data/input/button/button.js",
-        "destination": "atoms/button-overview/button.js"
+        "destination": "test-project/atoms/button-overview/button.js"
       },
       "css": {
         "source": "/Users/fs/Sites/patternizer/src/test-data/input/button/button.css",
-        "destination": "atoms/button-overview/button.css"
+        "destination": "test-project/atoms/button-overview/button.css"
       },
       "phoneIcon": {
         "source": "/Users/fs/Sites/patternizer/src/test-data/input/button/phone.svg",
-        "destination": "atoms/button-overview/phone.svg"
+        "destination": "test-project/atoms/button-overview/phone.svg"
       }
     },
     "scriptSources": [
@@ -182,7 +241,7 @@ export default [
     },
     "md": "\n# Button\n\nVariables that can be passed (as an object):\n- `text` (Text; defaults to `'Send'`)\n- `secondary` (Boolean; defaults to `false`)\n- `arrow` (Boolean; defaults to `false`)\n\nDisplays button's text on click (as an `alert`).\n\n```twig\n{% include './button.twig' %}\n```\n\n## Hierarchy\n\n### Primary\n\nDefault; only pass text.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text' } %}\n```\n\n### Secondary\n\nAdd property `secondary` with value `true`.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text', 'secondary': true } %}\n```\n\n## Icons\n\nAdd property `arrow` with value `true`:\n\n```twig\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true } %}\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}\n```\n\nUse a custom icon (e.g. SVG):\n\n```twig\n  {% include \"./button.twig\" with {'text': data.defaultText, 'icon': paths.phoneIcon } %}\n```\n",
     "sourcePath": "/Users/fs/Sites/patternizer/src/test-data/input/button/button.md",
-    "destinationPath": "atoms/button-overview",
+    "destinationPath": "test-project/atoms/button-overview",
     "paths": {
       "js": "button.js",
       "css": "button.css",
@@ -239,15 +298,15 @@ export default [
     "sources": {
       "js": {
         "source": "/Users/fs/Sites/patternizer/src/test-data/input/button/button.js",
-        "destination": "atoms/button-overview/button-overview/button.js"
+        "destination": "test-project/atoms/button-overview/button-overview/button.js"
       },
       "css": {
         "source": "/Users/fs/Sites/patternizer/src/test-data/input/button/button.css",
-        "destination": "atoms/button-overview/button-overview/button.css"
+        "destination": "test-project/atoms/button-overview/button-overview/button.css"
       },
       "phoneIcon": {
         "source": "/Users/fs/Sites/patternizer/src/test-data/input/button/phone.svg",
-        "destination": "atoms/button-overview/button-overview/phone.svg"
+        "destination": "test-project/atoms/button-overview/button-overview/phone.svg"
       }
     },
     "scriptSources": [
@@ -261,7 +320,7 @@ export default [
     },
     "md": "\n# Button\n\nVariables that can be passed (as an object):\n- `text` (Text; defaults to `'Send'`)\n- `secondary` (Boolean; defaults to `false`)\n- `arrow` (Boolean; defaults to `false`)\n\nDisplays button's text on click (as an `alert`).\n\n```twig\n{% include './button.twig' %}\n```\n\n## Hierarchy\n\n### Primary\n\nDefault; only pass text.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text' } %}\n```\n\n### Secondary\n\nAdd property `secondary` with value `true`.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text', 'secondary': true } %}\n```\n\n## Icons\n\nAdd property `arrow` with value `true`:\n\n```twig\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true } %}\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}\n```\n\nUse a custom icon (e.g. SVG):\n\n```twig\n  {% include \"./button.twig\" with {'text': data.defaultText, 'icon': paths.phoneIcon } %}\n```\n",
     "sourcePath": "/Users/fs/Sites/patternizer/src/test-data/input/button/button.md",
-    "destinationPath": "atoms/button-overview/button-overview",
+    "destinationPath": "test-project/atoms/button-overview/button-overview",
     "paths": {
       "js": "button.js",
       "css": "button.css",
@@ -318,7 +377,7 @@ export default [
     "sources": {
       "assets": {
         "source": "/Users/fs/Sites/patternizer/src/test-data/input/heading/assets",
-        "destination": "atoms/heading/assets"
+        "destination": "test-project/atoms/heading/assets"
       }
     },
     "styleSources": [
@@ -329,7 +388,7 @@ export default [
     ],
     "md": "\n# Headings\n\n```twig\n<h1 class=\"h1\">A heading</h1>\n```",
     "sourcePath": "/Users/fs/Sites/patternizer/src/test-data/input/heading/heading.md",
-    "destinationPath": "atoms/heading",
+    "destinationPath": "test-project/atoms/heading",
     "paths": {
       "assets": "assets"
     },
@@ -377,7 +436,7 @@ export default [
     "title": "Home",
     "md": "\n# Pattern Overview\n\nThis is an overview. Go to [the Button](../../atoms/button-overview).",
     "sourcePath": "/Users/fs/Sites/patternizer/src/test-data/input/welcome.md",
-    "destinationPath": "atoms/home",
+    "destinationPath": "test-project/atoms/home",
     "styleSources": [
       "../../assets/main.css"
     ],

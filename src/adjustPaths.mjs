@@ -1,4 +1,4 @@
-import { join } from 'path';
+import { join, dirname } from 'path';
 import mapObject from './mapObject.mjs';
 
 /**
@@ -19,10 +19,12 @@ export default (item) => ({
             (source) => join(item.destinationPath, source),
         ),
     } : {}),
+    // Files from twigNamespaces are not copied to the destination, but consumed by twig right
+    // from their source; therefore use the sourcePath
     ...((item.twigNamespaces && item.sourcePath) ? {
         twigNamespaces: mapObject(
             item.twigNamespaces,
-            (source) => join(item.sourcePath, source),
+            (source) => join(dirname(item.sourcePath), source),
         ),
     } : {}),
 });

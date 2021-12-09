@@ -21,11 +21,11 @@ test('creates expected documentation files', async(t) => {
         { compareContent: true },
     );
     const { differences } = result;
-    t.is(differences, 0);
     if (differences !== 0) {
         console.log('Differences');
-        console.log(result.diffSet.filter((item) => item.state === 'distinct'));
+        console.log(result.diffSet);
     }
+    t.is(differences, 0);
 
 });
 

@@ -11,6 +11,7 @@ import mapTree from './mapTree.mjs';
 import mapObject from './mapObject.mjs';
 import adjustPaths from './adjustPaths.mjs';
 import adjustSources from './adjustSources.mjs';
+import removeHiddenEntriesFromMenu from './removeHiddenEntriesFromMenu.mjs';
 
 /**
  * Parses *main* pattern YAML file, gathers all necessary information and returns a structure that
@@ -46,13 +47,13 @@ export default ({
 } = {}) => {
 
     const menuEntries = [];
-    const adjustedMasterConfig = adjustSources(adjustPaths({
-        ...masterConfig,
-        destinationPath: '.',
-        sourcePath: dirname(entryYAMLFilePath),
-    }));
+    // Add masterConfig (at this time just the project's name) as root entry to structure
+    const structureWithMaster = [{
+        data: masterConfig.project,
+        children: structure,
+    }];
 
-    new Structure(structure)
+    new Structure(structureWithMaster)
 
         // Fetch YAML and MD from .md files (if the file exists)
         .map((item) => {
@@ -60,8 +61,11 @@ export default ({
             // Try to read file; if it does not exist, return current item
             const filePath = join(dirname(entryYAMLFilePath), item.data);
             const content = readFile(filePath);
+            // Only show a warning if path looks like a file (contains a file ending)
             if (!content) {
-                console.log(`Entry '${item.data}' in entry YAML file's 'structure' property is not a valid file path. Treating it as a crossheading.`);
+                if (/\.[a-z0-9]{2,4}$/i.test(filePath)) {
+                    console.warn(`Entry '${item.data}' in entry YAML file's 'structure' property is not a valid file path. Treating it as a crossheading.`);
+                }
                 return item;
             }
 
@@ -80,6 +84,25 @@ export default ({
                 sourcePath: join(dirname(entryYAMLFilePath), item.data),
             };
 
+        })
+
+
+        // Add masterConfig as content of structure's entry point. Reason: Only when masterConfig
+        // has its own entry, its files will be copied; and having its own folder prevents
+        // name clashes (if e.g. objects is copied as a source and 'Objects' is the name of
+        // a first leve menu entry)
+        .map((item, path) => {
+            if (path.length === 1 && path[0] === 0) {
+                return {
+                    ...item,
+                    ...masterConfig,
+                    // masterConfig is not a file (therefore sourcePath is not added above) while
+                    // files (e.g. sources) must be able to be copied. Therefore we have to add a
+                    // sourcePath.
+                    sourcePath: entryYAMLFilePath,
+                    showInMenu: false,
+                };
+            } else return item;
         })
 
 
@@ -134,27 +157,23 @@ export default ({
 
         // Merge parent config into child config if child config does not contain the corresponding
         // keys
-        .map((item, path, original) => {
-            // Add masterConfig as topmost ancestor so that its properties are inherited as well
-            const ancestors = [adjustedMasterConfig, ...getFamilyTree(original, item.path)];
-            return {
-                ...item,
-                ...mergeProperties(
-                    ancestors,
-                    [
-                        'styleSources',
-                        'scriptSources',
-                        'paths',
-                        'scripts',
-                        'project',
-                        'twigFunctions',
-                        'twigFilters',
-                        'twigNamespaces',
-                        'twigData',
-                    ],
-                ),
-            };
-        })
+        .map((item, path, original) => ({
+            ...item,
+            ...mergeProperties(
+                getFamilyTree(original, item.path),
+                [
+                    'styleSources',
+                    'scriptSources',
+                    'paths',
+                    'scripts',
+                    'project',
+                    'twigFunctions',
+                    'twigFilters',
+                    'twigNamespaces',
+                    'twigData',
+                ],
+            ),
+        }))
 
 
         // Make different paths relative (used for destination that can be placed anywhere and
@@ -195,12 +214,14 @@ export default ({
             const propertiesToPreserveInMenu = [
                 'destinationPath',
                 'title',
+                'showInMenu',
             ];
             // Remove children from item as we flatten things out; children are only needed in menu
             // by now
             const { children, path, ...rest } = item;
-            const menu = clearMenu(original, path, propertiesToPreserveInMenu);
-            const menuWithRelativePaths = mapTree(menu, (menuEntry) => ({
+            const menuWithAllItems = clearMenu(original, path, propertiesToPreserveInMenu);
+            const menuWithoutInvisibles = removeHiddenEntriesFromMenu(menuWithAllItems);
+            const menuWithRelativePaths = mapTree(menuWithoutInvisibles, (menuEntry) => ({
                 ...menuEntry,
                 // Get relative path to menu entries (from current documentation page's path).
                 // Only update paths if it's not a menu entry without a link.
