@@ -4,7 +4,10 @@ import adjustTwigImports from './adjustTwigImports.mjs';
 test('adjusts import paths', (t) => {
     // Double quotes
     const twig1 = '<div>test</div>{% include "dir/test.twig" %}<hr/>';
-    t.is(adjustTwigImports(twig1, '/base'), '<div>test</div>{% include "/base/dir/test.twig" %}<hr/>');
+    t.is(
+        adjustTwigImports(twig1, '/base'),
+        '<div>test</div>{% include "/base/dir/test.twig" %}<hr/>',
+    );
     // Single quotes
     const twig2 = '<div>test</div>{% include \'dir/test.twig\' %}';
     t.is(
@@ -16,6 +19,19 @@ test('adjusts import paths', (t) => {
     t.is(
         adjustTwigImports(twig3, '/base'),
         '{%   include   \'/base/dir /test.twig\'   %}',
+    );
+});
+
+test('works with embed', (t) => {
+    const twig1 = '<div>test</div>{% embed "dir/test.twig" %}<hr/>';
+    t.is(
+        adjustTwigImports(twig1, '/base'),
+        '<div>test</div>{% embed "/base/dir/test.twig" %}<hr/>',
+    );
+    const twig2 = '<div>test</div>{% embed "dir/test.twig" ignore missing %}<hr/>';
+    t.is(
+        adjustTwigImports(twig2, '/base'),
+        '<div>test</div>{% embed "/base/dir/test.twig" ignore missing %}<hr/>',
     );
 });
 
