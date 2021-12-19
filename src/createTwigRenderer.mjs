@@ -1,5 +1,6 @@
 import Twig from 'twig';
 import adjustTwigImports from './adjustTwigImports.mjs';
+import { readFileSync } from 'fs';
 
 /**
  * Renders a twig template (does not accept the injection of data as it must all be present in
@@ -38,6 +39,27 @@ export default ({
     for (const [name, fn] of Object.entries(twigFilters)) {
         Twig.extendFilter(name, eval(fn)); // eslint-disable-line no-eval
     }
+
+    // source does not work with twig namespaces. Fix/overwrite the source function to support
+    // namespaces. See https://github.com/twigjs/twig.js/issues/442. extendFunction does not work
+    // here, it will not be called.
+    Twig.extendFunction('source', (src) => {
+        let adjustedSource = src;
+        // Test if src contains a namespace; if it does, replace it with the corresponding path
+        const namespace = /^@([a-z]+[^/]+)/g.exec(src);
+        if (namespace) {
+            if (!twigNamespaces[namespace[1]]) {
+                console.warn('Namespace %s not found in %o', namespace[1], twigNamespaces);
+            }
+            adjustedSource = adjustedSource.replace(namespace[0], twigNamespaces[namespace[1]]);
+        }
+        try {
+            return readFileSync(adjustedSource, 'utf8');
+        } catch (err) {
+            console.warn('Could not read file %s that was included via source tag', adjustedSource);
+            return `source: File ${src} not found`;
+        }
+    });
 
     const { twig } = Twig;
 
