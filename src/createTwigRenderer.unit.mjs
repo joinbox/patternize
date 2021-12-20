@@ -14,13 +14,13 @@ test('returns a function', (t) => {
 });
 
 test('works with twig functions', (t) => {
-    const template = '{{ convert(5) }}';
+    const template = '<div>{{ convert(5) }}</div>';
     const result = createTwigRenderer({
         twigFunctions: {
             convert: '(value) => `<q>${value * 10}</q>`;',
         },
     })(template);
-    t.is(result.includes('<q>50</q>'), true);
+    t.is(result.includes('<div><q>50</q></div>'), true);
 });
 
 test('works with twig filters', (t) => {
@@ -64,4 +64,14 @@ test('works with parameters (paths and data)', (t) => {
         },
     })(template);
     t.is(result, '<img src="path/to/image.png" alt="alt text" />');
+});
+
+test('enables source to work with namespaces', (t) => {
+    const template = '<p>{{ source(\'@icons/arrow-icon.twig\') }}</p>';
+    const result = createTwigRenderer({
+        twigNamespaces: {
+            icons: join(basePath, 'test-data/input/assets/icons'),
+        },
+    })(template);
+    t.is(result, '<p>➝</p>');
 });

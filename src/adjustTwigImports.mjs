@@ -10,7 +10,7 @@ export default (content, basePath) => (
         // Backreferences don't work in character classes; that's why we cannot use
         // [^\2] to get all characters *but* the quote matched. Use a tempered
         // greey token instead: http://www.rexegg.com/regex-quantifiers.html#tempered_greed
-        /(\{%\s*include\s+(["']))((?:(?!\2).)*)/g,
+        /(\{%\s*(?:include|embed)\s+(["']))((?:(?!\2).)*)/g,
         (match, start, quote, middle) => ([
             start,
             join(basePath, middle),

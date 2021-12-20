@@ -98,13 +98,15 @@
         hljs.highlightAll();
 
     </script>
+    <!-- Scripts injected through scripts property; place them *before* scriptSources as they might
+    need to do preparatory work (e.g. define window.Drupal as {}). They can wait for the other
+    scripts below by using timeouts, rAF or events -->
+    {% for script in scripts %}
+        <script>{{script}}</script>
+    {% endfor %}
     <!-- Scripts linked through scriptSources property -->
     {% for source in scriptSources %}
         <script src="{{source}}"></script>
-    {% endfor %}
-    <!-- Scripts injected through scripts property -->
-    {% for script in scripts %}
-        <script>{{script}}</script>
     {% endfor %}
 
 </body>
