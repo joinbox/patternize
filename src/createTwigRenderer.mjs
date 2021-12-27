@@ -1,6 +1,6 @@
-import Twig from 'twig';
-import adjustTwigImports from './adjustTwigImports.mjs';
 import { readFileSync } from 'fs';
+import Twig from './lib/twig.js';
+import adjustTwigImports from './adjustTwigImports.mjs';
 
 /**
  * Renders a twig template (does not accept the injection of data as it must all be present in
