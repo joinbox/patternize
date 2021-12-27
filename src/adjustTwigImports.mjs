@@ -13,7 +13,9 @@ export default (content, basePath) => (
         /(\{%\s*(?:include|embed)\s+(["']))((?:(?!\2).)*)/g,
         (match, start, quote, middle) => ([
             start,
-            join(basePath, middle),
+            // If path starts with an @, it's a namespace; don't add path prefix to it; do it
+            // here to keep the regex above simple.
+            middle.startsWith('@') ? middle : join(basePath, middle),
         ].join('')),
     )
 );
