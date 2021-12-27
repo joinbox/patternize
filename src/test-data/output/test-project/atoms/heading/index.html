@@ -158,10 +158,12 @@
         hljs.highlightAll();
 
     </script>
-    <!-- Scripts linked through scriptSources property -->
-            <script src="../../assets/main.js"></script>
-        <!-- Scripts injected through scripts property -->
+    <!-- Scripts injected through scripts property; place them *before* scriptSources as they might
+    need to do preparatory work (e.g. define window.Drupal as {}). They can wait for the other
+    scripts below by using timeouts, rAF or events -->
             <script>console.log('heading');</script>
+        <!-- Scripts linked through scriptSources property -->
+            <script src="../../assets/main.js"></script>
     
 </body>
 </html>

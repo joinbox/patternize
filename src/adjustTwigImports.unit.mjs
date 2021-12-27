@@ -43,9 +43,17 @@ test('fails if brace and % are missing', (t) => {
 test('works with multiple imports and lines', (t) => {
     const twig = `
         <div>{% include "dir/test1.twig" with {"test": true} only %}
-        <div>{% include 'dir/test2.twig' %}
+        <div>{% embed 'dir/test2.twig' %}
     `;
     const result = adjustTwigImports(twig, '/User');
     t.is(result.includes('{% include "/User/dir/test1.twig" with'), true);
-    t.is(result.includes('{% include \'/User/dir/test2.twig\' %}'), true);
+    t.is(result.includes('{% embed \'/User/dir/test2.twig\' %}'), true);
+});
+
+test('does not rewrite namespaces', (t) => {
+    const twig = '<div>test</div>{% include "@ns/test.twig" %}<hr/>';
+    t.is(
+        adjustTwigImports(twig, '/base'),
+        '<div>test</div>{% include "@ns/test.twig" %}<hr/>',
+    );
 });

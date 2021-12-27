@@ -43,6 +43,7 @@ export default ({
     // source does not work with twig namespaces. Fix/overwrite the source function to support
     // namespaces. See https://github.com/twigjs/twig.js/issues/442. extendFunction does not work
     // here, it will not be called.
+    // TODO: Add support for arguments (ignore_missing)
     Twig.extendFunction('source', (src) => {
         let adjustedSource = src;
         // Test if src contains a namespace; if it does, replace it with the corresponding path

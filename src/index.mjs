@@ -76,6 +76,7 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
         const html = convertMDToHTML(item);
         return {
             ...item,
+            // Add html property to returned object if it is present
             ...(html ? { html } : {}),
         };
     });
