@@ -23,7 +23,7 @@ test('creates expected documentation files', async(t) => {
     const { differences } = result;
     if (differences !== 0) {
         console.log('Differences');
-        console.log(result.diffSet);
+        console.log(result.diffSet.filter((comaparison) => comaparison.state !== 'equal'));
     }
     t.is(differences, 0);
 
