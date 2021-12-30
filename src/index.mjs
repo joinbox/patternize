@@ -1,5 +1,6 @@
-import { join } from 'path';
+import { join, dirname } from 'path';
 import { version } from 'process';
+import { fileURLToPath } from 'url';
 import {
     writeFileSync,
     existsSync,
@@ -29,6 +30,10 @@ import generateMenuStructure from './generateMenuStructure.mjs';
  */
 export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirectory }) => {
 
+
+    const basePath = dirname(fileURLToPath(new URL(import.meta.url)));
+
+    // Check node version (for Andi)
     const major = parseInt(version.substring(1).match(/^\d+/), 10);
     const requiredMajor = 14;
     if (major < requiredMajor) {
@@ -123,6 +128,21 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
             templatePath: './templates/home.twig',
         });
         writeFileSync(join(outputDirectoryPath, 'index.html'), redirectFile);
+    }
+
+    // Clone JS/CSS files (we cannot load them externally for certain projects due to CSP or WAF
+    // restrictions)
+    const libraries = [
+        'bulma.min.css',
+        'highlight.min.js',
+        'tomorrow-night-bright.min.css',
+        'twig.min.js',
+    ];
+    for (const library of libraries) {
+        fsExtra.copySync(
+            join(basePath, 'lib', library),
+            join(outputDirectoryPath, 'lib', library),
+        );
     }
 
 };
