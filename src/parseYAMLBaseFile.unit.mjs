@@ -293,3 +293,12 @@ test('uses correct paths for masterConfig', (t) => {
     });
 
 });
+
+
+test('adds relative path to root directory', (t) => {
+    const { result } = setupData();
+    t.is(result[0].relativePathToRootDirectory, '..');
+    // Child (file1)
+    t.is(result[2].relativePathToRootDirectory, '../..');
+    t.is(result[4].relativePathToRootDirectory, '../../..');
+});

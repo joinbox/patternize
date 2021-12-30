@@ -119,6 +119,14 @@ export default ({
             };
         })
 
+        .map((item, path) => ({
+            ...item,
+            relativePathToRootDirectory: Array
+                .from({ length: path.length })
+                .map(() => '..')
+                .join('/'),
+        }))
+
 
         // Add paths (indexes of ancestor elements) to every entry in menu (needed to only keep
         // children of *that* path); path is e.g. [0, 2, 1] for the second child of the third child
