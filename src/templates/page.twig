@@ -40,6 +40,15 @@
             position: relative;
             left: -0.75em;
         }
+        /* Enable horizontal scrolling for long code lines */
+        .content-container {
+            overflow: hidden;
+        }
+        /* If elements are positioned absolutely within a component, make sure they are not
+        aligned to the document, but instead to the preview container */
+        .preview-container {
+            position: relative;
+        }
 
     </style>
     {# Add documentation styles at the end to overwrite previous styles of base theme #}
@@ -50,7 +59,7 @@
 </head>
 
 <body>
-    <div class="container is-fullhd mx-4">
+    <div class="container is-fluid mx-4">
         <div class="columns">
             <nav class="column is-2 pt-6 mr-5 has-background-white-ter" style="min-height: 100vh">
                 <p>Design System</p>
@@ -60,7 +69,7 @@
                     {% include "navigation-entry.twig" with {'links': menu} only %}
                 </aside>
             </nav>
-            <div class="column">
+            <div class="column content-container">
                 <div class="my-6">
                     {{html}}
                 </div>
