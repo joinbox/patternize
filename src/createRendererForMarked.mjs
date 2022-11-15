@@ -35,7 +35,7 @@ export default (renderTwig) => ({
             code.push('<div data-content hidden><pre><code class="html">');
             code.push(escapeHTML(parsedTwig));
             code.push('</code></pre></div>');
-            code.push(`<div data-content>${parsedTwig}</div>`);
+            code.push(`<div data-content class="preview-container">${parsedTwig}</div>`);
         } else {
             // Unknown type of code (no special treatment will be applied); <a> is necessary for
             // correct styling by bulma

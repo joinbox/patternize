@@ -22,7 +22,7 @@ test('renders twig', (t) => {
 <div data-content hidden><pre><code class="html">
 &lt;button&gt;{{text}}&lt;/button&gt;
 </code></pre></div>
-<div data-content><button>{{text}}</button></div>
+<div data-content class="preview-container"><button>{{text}}</button></div>
 </div>`);
 });
 
