@@ -40,6 +40,14 @@
             position: relative;
             left: -0.75em;
         }
+        .content-container {
+            overflow: hidden;
+        }
+        /* If elements are positioned absolutely within a component, make sure they are not
+        aligned to the document, but instead to the preview container */
+        .preview-container {
+            position: relative;
+        }
 
     </style>
     
@@ -48,7 +56,7 @@
     </head>
 
 <body>
-    <div class="container is-fullhd mx-4">
+    <div class="container is-fluid mx-4">
         <div class="columns">
             <nav class="column is-2 pt-6 mr-5 has-background-white-ter" style="min-height: 100vh">
                 <p>Design System</p>
@@ -117,7 +125,7 @@
 
                 </aside>
             </nav>
-            <div class="column">
+            <div class="column content-container">
                 <div class="my-6">
                     <h1 class="title is-1">Button</h1><p class="paragraph">Variables that can be passed (as an object):</p>
             <ul class="list" start="">
@@ -141,7 +149,7 @@
         Send
     &lt;/button&gt;
 </code></pre></div>
-<div data-content>    
+<div data-content class="preview-container">    
 <button class="c-button c-button-primary">
         Send
     </button></div>
@@ -160,7 +168,7 @@
         Custom Text
     &lt;/button&gt;
 </code></pre></div>
-<div data-content>    
+<div data-content class="preview-container">    
 <button class="c-button c-button-primary">
         Custom Text
     </button></div>
@@ -179,7 +187,7 @@
         Custom Text
     &lt;/button&gt;
 </code></pre></div>
-<div data-content>    
+<div data-content class="preview-container">    
 <button class="c-button c-button-secondary">
         Custom Text
     </button></div>
@@ -202,7 +210,7 @@
         Custom Text
             ➝    &lt;/button&gt;
 </code></pre></div>
-<div data-content>      
+<div data-content class="preview-container">      
 <button class="c-button c-button-primary">
         Custom Text
             ➝    </button>      
@@ -225,7 +233,7 @@
         Text from twigData
     &lt;/button&gt;
 </code></pre></div>
-<div data-content>      
+<div data-content class="preview-container">      
 <button class="c-button c-button-primary">
             <img class="icon" src="phone.svg" />
         Text from twigData
