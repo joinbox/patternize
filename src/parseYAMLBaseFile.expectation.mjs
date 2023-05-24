@@ -1,9 +1,14 @@
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const basePath = dirname(fileURLToPath(new URL(import.meta.url)));
+
 export default [
   {
     "project": "Test Project",
     "sources": {
       "assets": {
-        "source": "/Users/fs/Sites/patternize/src/test-data/input/assets",
+        "source": join(basePath, 'test-data/input/assets'),
         "destination": "test-project/assets"
       }
     },
@@ -20,9 +25,9 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "/Users/fs/Sites/patternize/src/test-data/input/assets/icons"
+      "icons": join(basePath, 'test-data/input/assets/icons'),
     },
-    "sourcePath": "/Users/fs/Sites/patternize/src/test-data/input/base.yml",
+    "sourcePath": join(basePath, 'test-data/input/base.yml'),
     "showInMenu": false,
     "title": "Test Project",
     "relativePathToRootDirectory": "..",
@@ -79,7 +84,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "/Users/fs/Sites/patternize/src/test-data/input/assets/icons"
+      "icons": join(basePath, 'test-data/input/assets/icons'),
     },
     "menu": [
       {
@@ -114,7 +119,7 @@ export default [
   {
     "title": "Home",
     "md": "\n# Pattern Overview\n\nThis is an overview. Go to [the Button](../../atoms/button-overview).",
-    "sourcePath": "/Users/fs/Sites/patternize/src/test-data/input/welcome.md",
+    "sourcePath": join(basePath, 'test-data/input/welcome.md'),
     "relativePathToRootDirectory": "../../..",
     "destinationPath": "test-project/introduction/home",
     "styleSources": [
@@ -134,7 +139,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "/Users/fs/Sites/patternize/src/test-data/input/assets/icons"
+      "icons": join(basePath, 'test-data/input/assets/icons'),
     },
     "menu": [
       {
@@ -186,7 +191,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "/Users/fs/Sites/patternize/src/test-data/input/assets/icons"
+      "icons": join(basePath, 'test-data/input/assets/icons'),
     },
     "menu": [
       {
@@ -222,15 +227,15 @@ export default [
     "title": "Button Overview",
     "sources": {
       "js": {
-        "source": "/Users/fs/Sites/patternize/src/test-data/input/button/button.js",
+        "source": join(basePath, 'test-data/input/button/button.js'),
         "destination": "test-project/atoms/button-overview/button.js"
       },
       "css": {
-        "source": "/Users/fs/Sites/patternize/src/test-data/input/button/button.css",
+        "source": join(basePath, 'test-data/input/button/button.css'),
         "destination": "test-project/atoms/button-overview/button.css"
       },
       "phoneIcon": {
-        "source": "/Users/fs/Sites/patternize/src/test-data/input/button/phone.svg",
+        "source": join(basePath, 'test-data/input/button/phone.svg'),
         "destination": "test-project/atoms/button-overview/phone.svg"
       }
     },
@@ -244,7 +249,7 @@ export default [
       "defaultText": "Text from twigData"
     },
     "md": "\n# Button\n\nVariables that can be passed (as an object):\n- `text` (Text; defaults to `'Send'`)\n- `secondary` (Boolean; defaults to `false`)\n- `arrow` (Boolean; defaults to `false`)\n\nDisplays button's text on click (as an `alert`).\n\n```twig\n{% include './button.twig' %}\n```\n\n## Hierarchy\n\n### Primary\n\nDefault; only pass text.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text' } %}\n```\n\n### Secondary\n\nAdd property `secondary` with value `true`.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text', 'secondary': true } %}\n```\n\n## Icons\n\nAdd property `arrow` with value `true`:\n\n```twig\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true } %}\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}\n```\n\nUse a custom icon (e.g. SVG):\n\n```twig\n  {% include \"./button.twig\" with {'text': data.defaultText, 'icon': paths.phoneIcon } %}\n```\n",
-    "sourcePath": "/Users/fs/Sites/patternize/src/test-data/input/button/button.md",
+    "sourcePath": join(basePath, 'test-data/input/button/button.md'),
     "relativePathToRootDirectory": "../../..",
     "destinationPath": "test-project/atoms/button-overview",
     "paths": {
@@ -260,7 +265,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "/Users/fs/Sites/patternize/src/test-data/input/assets/icons"
+      "icons": join(basePath, 'test-data/input/assets/icons'),
     },
     "menu": [
       {
@@ -302,15 +307,15 @@ export default [
     "title": "Button Overview",
     "sources": {
       "js": {
-        "source": "/Users/fs/Sites/patternize/src/test-data/input/button/button.js",
+        "source": join(basePath, 'test-data/input/button/button.js'),
         "destination": "test-project/atoms/button-overview/button-overview/button.js"
       },
       "css": {
-        "source": "/Users/fs/Sites/patternize/src/test-data/input/button/button.css",
+        "source": join(basePath, 'test-data/input/button/button.css'),
         "destination": "test-project/atoms/button-overview/button-overview/button.css"
       },
       "phoneIcon": {
-        "source": "/Users/fs/Sites/patternize/src/test-data/input/button/phone.svg",
+        "source": join(basePath, 'test-data/input/button/phone.svg'),
         "destination": "test-project/atoms/button-overview/button-overview/phone.svg"
       }
     },
@@ -324,7 +329,7 @@ export default [
       "defaultText": "Text from twigData"
     },
     "md": "\n# Button\n\nVariables that can be passed (as an object):\n- `text` (Text; defaults to `'Send'`)\n- `secondary` (Boolean; defaults to `false`)\n- `arrow` (Boolean; defaults to `false`)\n\nDisplays button's text on click (as an `alert`).\n\n```twig\n{% include './button.twig' %}\n```\n\n## Hierarchy\n\n### Primary\n\nDefault; only pass text.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text' } %}\n```\n\n### Secondary\n\nAdd property `secondary` with value `true`.\n\n```twig\n{% include './button.twig' with {'text': 'Custom Text', 'secondary': true } %}\n```\n\n## Icons\n\nAdd property `arrow` with value `true`:\n\n```twig\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true } %}\n  {% include \"./button.twig\" with {'text': 'Custom Text', 'arrow': true, 'secondary': true } %}\n```\n\nUse a custom icon (e.g. SVG):\n\n```twig\n  {% include \"./button.twig\" with {'text': data.defaultText, 'icon': paths.phoneIcon } %}\n```\n",
-    "sourcePath": "/Users/fs/Sites/patternize/src/test-data/input/button/button.md",
+    "sourcePath": join(basePath, 'test-data/input/button/button.md'),
     "relativePathToRootDirectory": "../../../..",
     "destinationPath": "test-project/atoms/button-overview/button-overview",
     "paths": {
@@ -340,7 +345,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "/Users/fs/Sites/patternize/src/test-data/input/assets/icons"
+      "icons": join(basePath, 'test-data/input/assets/icons'),
     },
     "menu": [
       {
@@ -382,7 +387,7 @@ export default [
     "title": "Heading",
     "sources": {
       "assets": {
-        "source": "/Users/fs/Sites/patternize/src/test-data/input/heading/assets",
+        "source": join(basePath, 'test-data/input/heading/assets'),
         "destination": "test-project/atoms/heading/assets"
       }
     },
@@ -393,7 +398,7 @@ export default [
       "console.log('heading');"
     ],
     "md": "\n# Headings\n\n```twig\n<h1 class=\"h1\">A heading</h1>\n```",
-    "sourcePath": "/Users/fs/Sites/patternize/src/test-data/input/heading/heading.md",
+    "sourcePath": join(basePath, 'test-data/input/heading/heading.md'),
     "relativePathToRootDirectory": "../../..",
     "destinationPath": "test-project/atoms/heading",
     "paths": {
@@ -407,7 +412,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "/Users/fs/Sites/patternize/src/test-data/input/assets/icons"
+      "icons": join(basePath, 'test-data/input/assets/icons'),
     },
     "menu": [
       {
@@ -442,7 +447,7 @@ export default [
   {
     "title": "Home",
     "md": "\n# Pattern Overview\n\nThis is an overview. Go to [the Button](../../atoms/button-overview).",
-    "sourcePath": "/Users/fs/Sites/patternize/src/test-data/input/welcome.md",
+    "sourcePath": join(basePath, 'test-data/input/welcome.md'),
     "relativePathToRootDirectory": "../../..",
     "destinationPath": "test-project/atoms/home",
     "styleSources": [
@@ -462,7 +467,7 @@ export default [
       "t": "(text) => `${text} (translated)`"
     },
     "twigNamespaces": {
-      "icons": "/Users/fs/Sites/patternize/src/test-data/input/assets/icons"
+      "icons": join(basePath, 'test-data/input/assets/icons'),
     },
     "menu": [
       {
