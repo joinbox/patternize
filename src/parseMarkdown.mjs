@@ -1,4 +1,4 @@
-import marked from 'marked';
+import { marked } from 'marked';
 
 /**
  * Parses MD, returns HTML.
@@ -7,6 +7,7 @@ import marked from 'marked';
  *                                      will be called in the order provided.
  */
 export default ({ markdown, renderers = [] } = {}) => {
+    marked.use({ mangle: false, headerIds: false });
     renderers.forEach((renderer) => marked.use({ renderer }));
-    return marked(markdown);
+    return marked.parse(markdown);
 };
