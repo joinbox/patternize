@@ -5,7 +5,7 @@ import {
     writeFileSync,
     existsSync,
     mkdirSync,
-    rmdirSync,
+    rmSync,
     statSync,
     readdirSync,
 } from 'fs';
@@ -57,7 +57,7 @@ export default async({ entryFilePath, outputDirectoryPath, forceEmptyOutputDirec
         throw new Error(`File for entryFilePath ${entryFilePath} does not exist.`);
     }
 
-    rmdirSync(outputDirectoryPath, { recursive: true });
+    rmSync(outputDirectoryPath, { recursive: true });
     mkdirSync(outputDirectoryPath);
 
     const baseFileYAML = readAndParseYAML(entryFilePath);
