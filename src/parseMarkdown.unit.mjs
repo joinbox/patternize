@@ -2,7 +2,7 @@ import test from 'ava';
 import parseMarkdown from './parseMarkdown.mjs';
 
 test('parses markdown', (t) => {
-    t.is(parseMarkdown({ markdown: '# heading' }), '<h1 id="heading">heading</h1>\n');
+    t.is(parseMarkdown({ markdown: '# heading' }), '<h1>heading</h1>\n');
 });
 
 test('uses renderers in order provided', (t) => {
