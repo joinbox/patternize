@@ -53,8 +53,8 @@ export default (renderTwig) => ({
     // Basic styles (headings etc.) to be styled with bulma / custom CSS (where bulma is missing
     // styles). There is no negative ancestor selector (with selectors 3) which would enable us
     // to exclude elements within code/demo blocks, therefore we have to use positive selectors.
-    heading(text, level) {
-        return `<h${level} class="title is-${level}">${text}</h${level}>`;
+    heading(text, level, raw, slugger) {
+        return `<h${level} id="${slugger.slug(raw)}" class="title is-${level}">${text}</h${level}>`;
     },
     paragraph(text) {
         return `<p class="paragraph">${text}</p>`;

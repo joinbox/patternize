@@ -2,6 +2,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import test from 'ava';
 import createRendererForMarked from './createRendererForMarked.mjs';
+import { marked } from 'marked'
 
 
 test('renders twig', (t) => {
@@ -54,8 +55,9 @@ body
 
 test('renders headings', (t) => {
     const config = createRendererForMarked();
-    const result = config.heading('title', 2);
-    t.is(result, '<h2 class="title is-2">title</h2>');
+    // Slugger is passed to the heading function. See https://marked.js.org/using_pro#renderer
+    const result = config.heading('title', 2, 'title', new marked.Slugger());
+    t.is(result, '<h2 id="title" class="title is-2">title</h2>');
 });
 
 test('renders paragraphs', (t) => {
